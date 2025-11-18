@@ -21,7 +21,7 @@ Thing
 ├── SpesialisGigi
 │   ├── DokterGigiUmum
 │   ├── SpesialisEndodentis
-│   ├── SpesialisPeridonsia
+│   └── SpesialisPeridonsia
 └── Pasien
 ```
 
