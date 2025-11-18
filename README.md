@@ -3,13 +3,11 @@
 ## Class
 ```
 Thing
-├── Kondisi
 ├── Gejala
 │   ├── Ngilu
 │   ├── NyeriMalamHari
 │   ├── NyeriSaatMenggigit
 │   └── NyeriSpontan
-├── Pasien
 ├── Pemicu
 │   ├── TekananSaatMenggigit
 │   ├── StimulusDingin
@@ -20,10 +18,11 @@ Thing
 │   ├── Periodontitis
 │   ├── PulpitisIrreversible
 │   └── PulpitisReversible
-└── SpesialisGigi
-    ├── DokterGigiUmum
-    ├── SpesialisEndodentis
-    └── SpesialisPeridonsia
+├── SpesialisGigi
+│   ├── DokterGigiUmum
+│   ├── SpesialisEndodentis
+│   ├── SpesialisPeridonsia
+└── Pasien
 ```
 
 ## Object Properties
