@@ -12,53 +12,170 @@
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#dipicuOleh
-:dipicuOleh rdf:type owl:ObjectProperty .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/dipicuOleh
+:dipicuOleh rdf:type owl:ObjectProperty ;
+            rdfs:domain :PenyakitGigi ;
+            rdfs:range :Pemicu .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#membutuhkanSpesialis
-:membutuhkanSpesialis rdf:type owl:ObjectProperty .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/membutuhkanSpesialis
+:membutuhkanSpesialis rdf:type owl:ObjectProperty ;
+                      rdfs:range :SpesialisGigi .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#mengalamiGejala
-:mengalamiGejala rdf:type owl:ObjectProperty .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/memilikiGejala
+:memilikiGejala rdf:type owl:ObjectProperty ;
+                rdfs:domain :PenyakitGigi ;
+                rdfs:range :Gejala .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#tingkatUrgensi
-:tingkatUrgensi rdf:type owl:ObjectProperty .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/mengalamiGejala
+:mengalamiGejala rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Pasien ;
+                 rdfs:range :Gejala .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/tingkatUrgensi
+:tingkatUrgensi rdf:type owl:ObjectProperty ;
+                rdfs:domain :PenyakitGigi ;
+                rdfs:range :Gejala .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#DokterGigiUmum
-:DokterGigiUmum rdf:type owl:Class .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/DokterGigiUmum
+:DokterGigiUmum rdf:type owl:Class ;
+                rdfs:subClassOf :SpesialisGigi .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#Gejala
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Gejala
 :Gejala rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#KondisiGigi
-:KondisiGigi rdf:type owl:Class .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Gingivitis
+:Gingivitis rdf:type owl:Class ;
+            rdfs:subClassOf :PenyakitGigi .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#Pasien
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/HipersensitivitasDentin
+:HipersensitivitasDentin rdf:type owl:Class ;
+                         rdfs:subClassOf :PenyakitGigi ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :memilikiGejala ;
+                                           owl:someValuesFrom :Ngilu
+                                         ] .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Ngilu
+:Ngilu rdf:type owl:Class ;
+       rdfs:subClassOf :Gejala .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/NyeriMalamHari
+:NyeriMalamHari rdf:type owl:Class ;
+                rdfs:subClassOf :Gejala .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/NyeriSaatMenggigit
+:NyeriSaatMenggigit rdf:type owl:Class ;
+                    rdfs:subClassOf :Gejala .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/NyeriSpontan
+:NyeriSpontan rdf:type owl:Class ;
+              rdfs:subClassOf :Gejala .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Pasien
 :Pasien rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#Pemicu
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Pemicu
 :Pemicu rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#SpesialisEndodentist
-:SpesialisEndodentist rdf:type owl:Class ;
-                      rdfs:subClassOf :SpesialisGigi .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/PenyakitGigi
+:PenyakitGigi rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#SpesialisGigi
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Periodontitis
+:Periodontitis rdf:type owl:Class ;
+               rdfs:subClassOf :PenyakitGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/PulpitisIrreversible
+:PulpitisIrreversible rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :memilikiGejala ;
+                                                                   owl:someValuesFrom :Ngilu
+                                                                 ]
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :memilikiGejala ;
+                                                                   owl:someValuesFrom :NyeriMalamHari
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf :PenyakitGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/PulpitisReversible
+:PulpitisReversible rdf:type owl:Class ;
+                    rdfs:subClassOf :PenyakitGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/SpesialisEndodentis
+:SpesialisEndodentis rdf:type owl:Class ;
+                     rdfs:subClassOf :SpesialisGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/SpesialisGigi
 :SpesialisGigi rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/SpesialisPeridonsia
+:SpesialisPeridonsia rdf:type owl:Class ;
+                     rdfs:subClassOf :SpesialisGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/StimulusDingin
+:StimulusDingin rdf:type owl:Class ;
+                rdfs:subClassOf :Pemicu .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/StimulusPanas
+:StimulusPanas rdf:type owl:Class ;
+               rdfs:subClassOf :Pemicu .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/TekananSaatMenggigit
+:TekananSaatMenggigit rdf:type owl:Class ;
+                      rdfs:subClassOf :Pemicu .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Ngilu
+:Ngilu rdf:type owl:NamedIndividual ,
+                :Gejala ,
+                :Ngilu .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/NyeriMalamHari
+:NyeriMalamHari rdf:type owl:NamedIndividual ,
+                         :Gejala ,
+                         :NyeriMalamHari .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Pasien_1
+:Pasien_1 rdf:type owl:NamedIndividual ,
+                   :Pasien ;
+          :mengalamiGejala :Ngilu ,
+                           :NyeriMalamHari .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
