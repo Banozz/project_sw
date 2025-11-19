@@ -117,6 +117,11 @@
 :TandaKerusakanJaringan rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#TraumaOklusi
+:TraumaOklusi rdf:type owl:Class ;
+              rdfs:subClassOf :PenyakitGigi .
+
+
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/DokterGigiUmum
 :DokterGigiUmum rdf:type owl:Class ;
                 rdfs:subClassOf :SpesialisGigi .
@@ -133,11 +138,7 @@
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/HipersensitivitasDentin
 :HipersensitivitasDentin rdf:type owl:Class ;
-                         rdfs:subClassOf :PenyakitGigi ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty :memilikiGejala ;
-                                           owl:someValuesFrom :Ngilu
-                                         ] .
+                         rdfs:subClassOf :PenyakitGigi .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8/Ngilu
@@ -281,9 +282,20 @@
 :Penyakit_Pulpitis_Reversible rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#Penyakit_Trauma_Oklusi
+:Penyakit_Trauma_Oklusi rdf:type owl:NamedIndividual ,
+                                 :TraumaOklusi ;
+                        :membutuhkanSpesialis :Spesialis_Umum .
+
+
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#Spesialis_Konservasi_Gigi
 :Spesialis_Konservasi_Gigi rdf:type owl:NamedIndividual ,
                                     :SpesialisEndodentis .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#Spesialis_Umum
+:Spesialis_Umum rdf:type owl:NamedIndividual ,
+                         :DokterGigiUmum .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/untitled-ontology-8#Tekanan
@@ -370,7 +382,7 @@
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :Pasien_Trauma_Oklusi
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Trauma_Oklusi
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
