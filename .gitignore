@@ -1,2 +1,2 @@
 private_notes.md
-Pasien(?p) ^ mengalamiKondisi(?p, ?k) ^ GigiGoyang(?k) ^ mengalamiGejala(?p, ?g) ^ NyeriSaatMenggigit(?g) ^ dipicuOleh(?g, ?trig) ^ TekananSaatMenggigit(?trig) -> didugaMenderita(?p, Penyakit_Trauma_Oklusi)
+catalog-v001.xml

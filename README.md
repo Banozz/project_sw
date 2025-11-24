@@ -49,6 +49,7 @@ topObjectProperty
 ```
 
 ## Individuals
+```
 ├── Gejala
 │   ├── Gejala_GusiBerdarah
 │   ├── Gejala_Ngilu
@@ -68,4 +69,5 @@ topObjectProperty
 └── Pemicu
     ├── Pemicu_Tekanan
     ├── Pemicu_Makanan_Panas
-    └── Pemicu_Makanan_Dingin
+    └── Pemicu_Makanan_Dingin m,
+```
