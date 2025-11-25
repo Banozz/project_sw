@@ -1,11 +1,11 @@
 # Notes Ontology Project: SOSRS (Symptom Oriented Specialist Recommender System) Spesialis Gigi
 
 ## Progress Report
-### Progress Pekan 18 November 2025
+### Progress Per 18 November 2025
 1. Update ontology Classes, Object Properties, dan Individuals untuk mengakomodasi inferensi penyakit Pulpitis Irreversible
 2. Update Plan (Revisi Classes dan Object Properties yang baru atau yang sebelumnya diubah)
 
-### Progress Pekan 24 November 2025
+### Progress Per 24 November 2025
 1. Konsultasi dengan Dokter Gigi Umum untuk proses diagnosa penyakit gigi berdasarkan kondisi gigi dan gejalanya, serta spesialis yang mungkin akan dibutuhkan untuk menangani penyakit tersebut.
 2. Update ontology Classes, Object Properties, dan Individuals untuk mengakomodasi inferensi penyakit Periodontitis dan Trauma Oklusi (Spesialis Endodonti dan Peridonsia)
 3. Update SWRL Rule untuk inferensi penyakit Periodontitis dan Trauma Oklusi
