@@ -15,7 +15,8 @@ Thing
 │   ├── GigiGoyang
 │   ├── GusiTurun
 │   ├── KantungGusiDalam
-│   └── KarangGigi
+│   ├── KarangGigi
+│   └── PlakGigi
 ├── Pemicu
 │   ├── TekananSaatMenggigit
 │   ├── StimulusDingin
@@ -41,10 +42,16 @@ Thing
 ## Object Properties
 ```
 topObjectProperty
-├── memilikiGejala
+├── berkaitanDengan
+├── berkembangMenjadi
+├── dialamiOleh
+├── didugaMenderita
 ├── dipicuOleh
 ├── membutuhkanSpesialis
+├── memilikiGejala
 ├── mengalamiGejala
+├── mengalamiKondisi
+├── menyebabkan
 └── tingkatUrgensi
 ```
 

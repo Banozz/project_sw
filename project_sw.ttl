@@ -499,6 +499,10 @@ _:genid51 a rdf:List ;
 # 
 # http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TandaKerusakanJaringan
 
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TandaKerusakanJaringan
+:TandaKerusakanJaringan rdf:type owl:Class .
+
 :TandaKerusakanJaringan a owl:Class .
 # 
 # http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TekananSaatMenggigit
