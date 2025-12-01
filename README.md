@@ -5,13 +5,22 @@
 1. Update ontology Classes, Object Properties, dan Individuals untuk mengakomodasi inferensi penyakit Pulpitis Irreversible
 2. Update Plan (Revisi Classes dan Object Properties yang baru atau yang sebelumnya diubah)
 
-### Progress Per 24 November 2025
+### Progress Per 25 November 2025
 1. Konsultasi dengan Dokter Gigi Umum untuk proses diagnosa penyakit gigi berdasarkan kondisi gigi dan gejalanya, serta spesialis yang mungkin akan dibutuhkan untuk menangani penyakit tersebut.
 2. Update ontology Classes, Object Properties, dan Individuals untuk mengakomodasi inferensi penyakit Periodontitis dan Trauma Oklusi (Spesialis Endodonti dan Peridonsia)
 3. Update SWRL Rule untuk inferensi penyakit Periodontitis dan Trauma Oklusi
 4. Update DL Expressivity (Initial testing) untuk meningkatkan dari ALU menjadi SROIQ (Sesuai Quiz-quiz sebelumnya)
 5. Update README.md pada GitHub untuk mengakomodasi Classes, Object Properties, dan Individuals baru.
 6. Update laporan dalam bentuk P5
+
+### Progress Per 2 Desember 2025
+1. Konsultasi lebih dalam mengenai proses diagnosa penyakit dan penentuan spesialis berdasarkan gejala.
+2. Update Ontology: Classes, Object Properties, Individuals, dan axioms untuk gejala-gejala yang dapat berkembang dan menyebabkan gejala yang lebih dalam.
+3. Update SWRL rule untuk inferensi penyakit Impaksi Molar
+4. Memfokuskan proyek pada inferensi 3 spesialis saja, yaitu Bedah Mulut, Endodentis, dan Peridonsia.
+5. Test penambahan Annotations menggunakan KB Bioontology untuk beberapa Penyakit yang sebelumnya telah dibentuk classnya.
+6. Riset dan inisiasi proyek aplikasi web untuk praktik ontology. (Untuk saat ini akan menggunakan NextJS Typescript).
+7. **(On going)** Update README.md pada GitHub untuk mengakomodasi Classes, Object Properties, dan Individuals baru.
 
 ## Classes
 ```
