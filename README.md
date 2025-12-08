@@ -20,7 +20,12 @@
 4. Memfokuskan proyek pada inferensi 3 spesialis saja, yaitu Bedah Mulut, Endodentis, dan Peridonsia.
 5. Test penambahan Annotations menggunakan KB Bioontology untuk beberapa Penyakit yang sebelumnya telah dibentuk classnya.
 6. Riset dan inisiasi proyek aplikasi web untuk praktik ontology. (Untuk saat ini akan menggunakan NextJS Typescript).
-7. **(On going)** Update README.md pada GitHub untuk mengakomodasi Classes, Object Properties, dan Individuals baru.
+
+### Progress Per 9 Desember 2025
+1. Penambahan SWRL rule untuk penyakit-penyakit baru.
+2. Update Ontology classes, axioms, properties, dll.
+3. Update DL Expressivity SROIQ -> SROIQ(D): Penambahan Data Properties "Lingering Pain" dalam detik.
+4. **(On going)** Update README.md pada GitHub untuk mengakomodasi Classes, Object Properties, dan Individuals baru.
 
 ## Classes
 ```
