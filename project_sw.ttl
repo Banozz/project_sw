@@ -4,1834 +4,1709 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/> .
+
+<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#dirujukKe
+:dirujukKe rdf:type owl:ObjectProperty ;
+           rdfs:domain :Pasien ;
+           rdfs:range :SpesialisGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/berkaitanDengan
+:berkaitanDengan rdf:type owl:ObjectProperty ,
+                          owl:SymmetricProperty ;
+                 rdfs:domain :KondisiGigi ;
+                 rdfs:range :KondisiGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/berkembangMenjadi
+:berkembangMenjadi rdf:type owl:ObjectProperty ,
+                            owl:AsymmetricProperty ,
+                            owl:IrreflexiveProperty ;
+                   rdfs:domain :PenyakitGigi ,
+                               [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Gejala
+                                               :KondisiGigi
+                                               :PenyakitGigi
+                                             )
+                               ] ;
+                   rdfs:range :PenyakitGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/dialamiOleh
+:dialamiOleh rdf:type owl:ObjectProperty ;
+             owl:inverseOf :mengalamiGejala ;
+             rdfs:domain :Gejala ;
+             rdfs:range :Pasien .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/didugaMenderita
+:didugaMenderita rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Pasien ;
+                 rdfs:range :PenyakitGigi ,
+                            [ rdf:type owl:Class ;
+                              owl:unionOf ( :Gejala
+                                            :KondisiGigi
+                                            :PenyakitGigi
+                                          )
+                            ] .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/dipicuOleh
+:dipicuOleh rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Gejala
+                                        :KondisiGigi
+                                        :PenyakitGigi
+                                      )
+                        ] ;
+            rdfs:range :Pemicu .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/membutuhkanSpesialis
+:membutuhkanSpesialis rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :menanganiPenyakit ;
+                      rdfs:domain :PenyakitGigi ,
+                                  [ rdf:type owl:Class ;
+                                    owl:unionOf ( :Gejala
+                                                  :KondisiGigi
+                                                  :PenyakitGigi
+                                                )
+                                  ] ;
+                      rdfs:range :SpesialisGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/memilikiGejala
+:memilikiGejala rdf:type owl:ObjectProperty ;
+                rdfs:domain :PenyakitGigi ,
+                            [ rdf:type owl:Class ;
+                              owl:unionOf ( :Gejala
+                                            :KondisiGigi
+                                            :PenyakitGigi
+                                          )
+                            ] ;
+                rdfs:range :Gejala .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/menanganiPenyakit
+:menanganiPenyakit rdf:type owl:ObjectProperty ;
+                   rdfs:domain :SpesialisGigi ;
+                   rdfs:range :PenyakitGigi ,
+                              [ rdf:type owl:Class ;
+                                owl:unionOf ( :Gejala
+                                              :KondisiGigi
+                                              :PenyakitGigi
+                                            )
+                              ] .
 
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender> a owl:Ontology .
-# 
-# 
-# #################################################################
-# #
-# #    Annotation properties
-# #
-# #################################################################
-# 
-# 
-# http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
-
-<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> a owl:AnnotationProperty .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Object Properties
-# #
-# #################################################################
-# 
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#dirujukKe
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#dirujukKe> a owl:ObjectProperty ;
-	rdfs:domain :Pasien ;
-	rdfs:range :SpesialisGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/berkaitanDengan
-
-:berkaitanDengan a owl:ObjectProperty , owl:SymmetricProperty ;
-	rdfs:domain :KondisiGigi ;
-	rdfs:range :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/berkembangMenjadi
-
-:berkembangMenjadi a owl:ObjectProperty , owl:AsymmetricProperty , owl:IrreflexiveProperty ;
-	rdfs:domain :PenyakitGigi , _:genid1 .
-
-_:genid1 a owl:Class ;
-	owl:unionOf _:genid4 .
-
-_:genid4 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid3 .
-
-_:genid3 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid2 .
-
-_:genid2 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:berkembangMenjadi rdfs:range :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/dialamiOleh
-
-:dialamiOleh a owl:ObjectProperty ;
-	owl:inverseOf :mengalamiGejala ;
-	rdfs:domain :Gejala ;
-	rdfs:range :Pasien .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/didugaMenderita
-
-:didugaMenderita a owl:ObjectProperty ;
-	rdfs:domain :Pasien ;
-	rdfs:range :PenyakitGigi , _:genid5 .
-
-_:genid5 a owl:Class ;
-	owl:unionOf _:genid8 .
-
-_:genid8 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid7 .
-
-_:genid7 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid6 .
-
-_:genid6 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/dipicuOleh
-
-:dipicuOleh a owl:ObjectProperty ;
-	rdfs:subPropertyOf owl:topObjectProperty ;
-	rdfs:domain _:genid9 .
-
-_:genid9 a owl:Class ;
-	owl:unionOf _:genid12 .
-
-_:genid12 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid11 .
-
-_:genid11 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid10 .
-
-_:genid10 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:dipicuOleh rdfs:range :Pemicu .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/membutuhkanSpesialis
-
-:membutuhkanSpesialis a owl:ObjectProperty ;
-	owl:inverseOf :menanganiPenyakit ;
-	rdfs:domain :PenyakitGigi , _:genid13 .
-
-_:genid13 a owl:Class ;
-	owl:unionOf _:genid16 .
-
-_:genid16 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid15 .
-
-_:genid15 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid14 .
-
-_:genid14 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:membutuhkanSpesialis rdfs:range :SpesialisGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/memilikiGejala
-
-:memilikiGejala a owl:ObjectProperty ;
-	rdfs:domain :PenyakitGigi , _:genid17 .
-
-_:genid17 a owl:Class ;
-	owl:unionOf _:genid20 .
-
-_:genid20 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid19 .
-
-_:genid19 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid18 .
-
-_:genid18 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:memilikiGejala rdfs:range :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/menanganiPenyakit
-
-:menanganiPenyakit a owl:ObjectProperty ;
-	rdfs:domain :SpesialisGigi ;
-	rdfs:range :PenyakitGigi , _:genid21 .
-
-_:genid21 a owl:Class ;
-	owl:unionOf _:genid24 .
-
-_:genid24 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid23 .
-
-_:genid23 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid22 .
-
-_:genid22 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/mengalamiGejala
-
-:mengalamiGejala a owl:ObjectProperty ;
-	rdfs:domain :Pasien ;
-	rdfs:range :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/mengalamiKondisi
-
-:mengalamiKondisi a owl:ObjectProperty ;
-	rdfs:domain :Pasien ;
-	rdfs:range :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/menyebabkan
-
-:menyebabkan a owl:ObjectProperty , owl:TransitiveProperty ;
-	rdfs:domain :KondisiGigi ;
-	rdfs:range :PenyakitGigi , _:genid25 .
-
-_:genid25 a owl:Class ;
-	owl:unionOf _:genid28 .
-
-_:genid28 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid27 .
-
-_:genid27 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid26 .
-
-_:genid26 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/tingkatUrgensi
-
-:tingkatUrgensi a owl:ObjectProperty ;
-	rdfs:domain :PenyakitGigi , _:genid29 .
-
-_:genid29 a owl:Class ;
-	owl:unionOf _:genid32 .
-
-_:genid32 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid31 .
-
-_:genid31 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid30 .
-
-_:genid30 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:tingkatUrgensi rdfs:range :Gejala .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Data properties
-# #
-# #################################################################
-# 
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#durasiNyeri
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#durasiNyeri> a owl:DatatypeProperty ;
-	rdfs:domain :Nyeri ;
-	rdfs:range xsd:unsignedInt .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Classes
-# #
-# #################################################################
-# 
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikal
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikal> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikalAkut
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikalAkut> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikal> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriodontal
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriodontal> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Discoloration
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Discoloration> a owl:Class ;
-	owl:equivalentClass <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiGelap> ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiBerwarna> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#FistulaGusi
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#FistulaGusi> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiGusi> , :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiBerwarna
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiBerwarna> a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiGelap
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiGelap> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiBerwarna> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiKekuningan
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiKekuningan> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiBerwarna> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GusiBenjol
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GusiBenjol> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiGusi> , :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ImpaksiMolar
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ImpaksiMolar> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#InfeksiPascaCabut
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#InfeksiPascaCabut> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KariesGigi
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KariesGigi> a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KariesProfunda
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KariesProfunda> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KariesGigi> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural> a owl:Class ;
-	owl:equivalentClass _:genid33 .
-
-_:genid33 a owl:Restriction ;
-	owl:onProperty :membutuhkanSpesialis ;
-	owl:hasValue <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Bedah_Mulut> .
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural> rdfs:subClassOf :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiGusi
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiGusi> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiMulut> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiMulut
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiMulut> a owl:Class .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#LubangPascaCabut
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#LubangPascaCabut> a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NekrosisPulpa
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NekrosisPulpa> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriHebat
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriHebat> a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriPalpasi
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriPalpasi> a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriPerkusi
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriPerkusi> a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal> a owl:Class ;
-	owl:equivalentClass _:genid34 .
-
-_:genid34 a owl:Restriction ;
-	owl:onProperty :membutuhkanSpesialis ;
-	owl:hasValue <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Periodonsia> .
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal> rdfs:subClassOf :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa> a owl:Class ;
-	owl:equivalentClass _:genid35 .
-
-_:genid35 a owl:Restriction ;
-	owl:onProperty :membutuhkanSpesialis ;
-	owl:hasValue :Spesialis_Konservasi_Gigi .
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa> rdfs:subClassOf :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PeriapikalKronis
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PeriapikalKronis> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RadiksRelikta
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RadiksRelikta> a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiNegatif
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiNegatif> a owl:Class ;
-	rdfs:subClassOf :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiPositifKuat
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiPositifKuat> a owl:Class ;
-	rdfs:subClassOf :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RiwayatCabutGigi
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RiwayatCabutGigi> a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#SisaAkar
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#SisaAkar> a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/BauMulut
-
-:BauMulut a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/BengkakWajah
-
-:BengkakWajah a owl:Class ;
-	rdfs:subClassOf :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/DokterGigiUmum
-
-:DokterGigiUmum a owl:Class ;
-	rdfs:subClassOf :SpesialisGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala
-
-:Gejala a owl:Class ;
-	owl:disjointWith :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiBerlubang
-
-:GigiBerlubang a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiErupsi
-
-:GigiErupsi a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiErupsiSebagian
-
-:GigiErupsiSebagian a owl:Class ;
-	rdfs:subClassOf :GigiErupsi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiErupsiSempurna
-
-:GigiErupsiSempurna a owl:Class ;
-	rdfs:subClassOf :GigiErupsi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiGoyang
-
-:GigiGoyang a owl:Class ;
-	rdfs:subClassOf :TandaKerusakanJaringan .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gingivitis
-
-:Gingivitis a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal> , _:genid36 .
-
-_:genid36 a owl:Restriction ;
-	owl:onProperty :berkembangMenjadi ;
-	owl:someValuesFrom :Periodontitis .
-
-:Gingivitis rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D005891> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GusiBerdarah
-
-:GusiBerdarah a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiGusi> , :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GusiTurun
-
-:GusiTurun a owl:Class ;
-	rdfs:subClassOf :TandaKerusakanJaringan .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/HipersensitivitasDentin
-
-:HipersensitivitasDentin a owl:Class ;
-	rdfs:subClassOf :PenyakitGigi , _:genid37 .
-
-_:genid37 a owl:Class ;
-	owl:unionOf _:genid40 .
-
-_:genid40 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid39 .
-
-_:genid39 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid38 .
-
-_:genid38 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:HipersensitivitasDentin rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D003807> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KantungGusiDalam
-
-:KantungGusiDalam a owl:Class ;
-	rdfs:subClassOf :TandaKerusakanJaringan .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KarangGigi
-
-:KarangGigi a owl:Class ;
-	rdfs:subClassOf :KondisiGigi , _:genid41 .
-
-_:genid41 a owl:Restriction ;
-	owl:onProperty :menyebabkan ;
-	owl:someValuesFrom :Gingivitis .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KondisiGigi
-
-:KondisiGigi a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiMulut> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Ngilu
-
-:Ngilu a owl:Class ;
-	owl:equivalentClass _:genid42 .
-
-_:genid42 a owl:Restriction ;
-	owl:onProperty :dipicuOleh ;
-	owl:someValuesFrom :Pemicu .
-
-:Ngilu rdfs:subClassOf :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Nyeri
-
-:Nyeri a owl:Class ;
-	rdfs:subClassOf :Gejala .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriMalamHari
-
-:NyeriMalamHari a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriMenelan
-
-:NyeriMenelan a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriRahangBelakang
-
-:NyeriRahangBelakang a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSaatMenggigit
-
-:NyeriSaatMenggigit a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSpontan
-
-:NyeriSpontan a owl:Class ;
-	rdfs:subClassOf :Nyeri .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/OperkulumBengkak
-
-:OperkulumBengkak a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien
-
-:Pasien a owl:Class ;
-	owl:equivalentClass _:genid43 .
-
-_:genid43 a owl:Class ;
-	owl:oneOf _:genid46 .
-
-_:genid46 a rdf:List ;
-	rdf:first :Pasien_1 ;
-	rdf:rest _:genid45 .
-
-_:genid45 a rdf:List ;
-	rdf:first :Pasien_Periodontitis ;
-	rdf:rest _:genid44 .
-
-_:genid44 a rdf:List ;
-	rdf:first :Pasien_Trauma_Oklusi ;
-	rdf:rest rdf:nil .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pemicu
-
-:Pemicu a owl:Class ;
-	owl:disjointWith :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PenyakitGigi
-
-:PenyakitGigi a owl:Class ;
-	rdfs:subClassOf _:genid47 .
-
-_:genid47 a owl:Class ;
-	owl:unionOf _:genid51 .
-
-_:genid51 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid50 .
-
-_:genid50 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest _:genid48 .
-
-_:genid48 a rdf:List ;
-	rdf:first _:genid49 .
-
-_:genid49 a owl:Restriction ;
-	owl:onProperty :memilikiGejala ;
-	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-	owl:onClass :Gejala .
-
-_:genid48 rdf:rest rdf:nil .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Periodontitis
-
-:Periodontitis a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal> , _:genid52 .
-
-_:genid52 a owl:Class ;
-	owl:unionOf _:genid55 .
-
-_:genid55 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid54 .
-
-_:genid54 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid53 .
-
-_:genid53 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:Periodontitis rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D010518> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PlakGigi
-
-:PlakGigi a owl:Class ;
-	rdfs:subClassOf :KondisiGigi , _:genid56 .
-
-_:genid56 a owl:Restriction ;
-	owl:onProperty :menyebabkan ;
-	owl:someValuesFrom :KarangGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiGigi
-
-:PosisiGigi a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiHorizontal
-
-:PosisiHorizontal a owl:Class ;
-	rdfs:subClassOf :PosisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiMiring
-
-:PosisiMiring a owl:Class ;
-	rdfs:subClassOf :PosisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PulpitisIrreversible
-
-:PulpitisIrreversible a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa> ;
-	rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D011671> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PulpitisReversible
-
-:PulpitisReversible a owl:Class ;
-	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa> , _:genid57 .
-
-_:genid57 a owl:Restriction ;
-	owl:onProperty :berkembangMenjadi ;
-	owl:someValuesFrom :PulpitisIrreversible .
-
-:PulpitisReversible rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D011671> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisBedahMulut
-
-:SpesialisBedahMulut a owl:Class ;
-	rdfs:subClassOf :SpesialisGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisEndodentis
-
-:SpesialisEndodentis a owl:Class ;
-	rdfs:subClassOf :SpesialisGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisGigi
-
-:SpesialisGigi a owl:Class .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisPeriodonsia
-
-:SpesialisPeriodonsia a owl:Class ;
-	rdfs:subClassOf :SpesialisGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/StimulusDingin
-
-:StimulusDingin a owl:Class ;
-	rdfs:subClassOf :Pemicu .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/StimulusPanas
-
-:StimulusPanas a owl:Class ;
-	rdfs:subClassOf :Pemicu .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TandaKerusakanJaringan
-
-:TandaKerusakanJaringan a owl:Class ;
-	rdfs:subClassOf :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TekananSaatMenggigit
-
-:TekananSaatMenggigit a owl:Class ;
-	rdfs:subClassOf :Pemicu .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TraumaOklusi
-
-:TraumaOklusi a owl:Class ;
-	rdfs:subClassOf :PenyakitGigi , _:genid58 .
-
-_:genid58 a owl:Class ;
-	owl:unionOf _:genid61 .
-
-_:genid61 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid60 .
-
-_:genid60 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid59 .
-
-_:genid59 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:TraumaOklusi rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D003766> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Trismus
-
-:Trismus a owl:Class ;
-	rdfs:subClassOf :Gejala .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Individuals
-# #
-# #################################################################
-# 
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Respon_Gigi_Negatif
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Respon_Gigi_Negatif> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiNegatif> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Trismus
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Trismus> a owl:NamedIndividual , :Trismus .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Fistula_Gusi
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Fistula_Gusi> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#FistulaGusi> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Gigi_Erupsi_Sebagian
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Gigi_Erupsi_Sebagian> a owl:NamedIndividual , :GigiErupsiSebagian .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Posisi_Gigi_Miring
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Posisi_Gigi_Miring> a owl:NamedIndividual , :PosisiMiring .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_Impaksi_Molar
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_Impaksi_Molar> a owl:NamedIndividual , :Pasien ;
-	:mengalamiGejala <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Trismus> ;
-	:mengalamiKondisi <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Gigi_Erupsi_Sebagian> , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Posisi_Gigi_Miring> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_Periapikal_Kronis
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_Periapikal_Kronis> a owl:NamedIndividual , :Pasien ;
-	:mengalamiGejala <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Respon_Gigi_Negatif> ;
-	:mengalamiKondisi <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Fistula_Gusi> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Akut
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Akut> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikalAkut> , :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Kronis
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Kronis> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PeriapikalKronis> , :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periodontal
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periodontal> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriodontal> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Gingivitis
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Gingivitis> a owl:NamedIndividual , :Gingivitis .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Impaksi_Molar
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Impaksi_Molar> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ImpaksiMolar> , :PenyakitGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Infeksi_Pasca_Cabut
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Infeksi_Pasca_Cabut> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#InfeksiPascaCabut> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Nekrosis_Pulpa
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Nekrosis_Pulpa> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NekrosisPulpa> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Radiks_Relikta
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Radiks_Relikta> a owl:NamedIndividual , <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RadiksRelikta> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Bedah_Mulut
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Bedah_Mulut> a owl:NamedIndividual , :SpesialisBedahMulut .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Peridonsia
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Peridonsia> a owl:NamedIndividual , :SpesialisPeriodonsia .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Periodonsia
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Periodonsia> a owl:NamedIndividual , :SpesialisPeriodonsia .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Stimulus_Dingin
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Stimulus_Dingin> a owl:NamedIndividual .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Stimulus_Panas
-
-<http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Stimulus_Panas> a owl:NamedIndividual .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_GusiBerdarah
-
-:Gejala_GusiBerdarah a owl:NamedIndividual , :Gejala , :GusiBerdarah ;
-	:dialamiOleh :Pasien_Periodontitis .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_Ngilu
-
-:Gejala_Ngilu a owl:NamedIndividual , :Gejala , :Ngilu ;
-	:dialamiOleh :Pasien_1 .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_NyeriMalamHari
-
-:Gejala_NyeriMalamHari a owl:NamedIndividual , :Gejala , :NyeriMalamHari ;
-	:dialamiOleh :Pasien_1 .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_NyeriSaatGigit
-
-:Gejala_NyeriSaatGigit a owl:NamedIndividual , :Gejala , :NyeriSaatMenggigit , _:genid62 .
-
-_:genid62 a owl:Class ;
-	owl:unionOf _:genid65 .
-
-_:genid65 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid64 .
-
-_:genid64 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid63 .
-
-_:genid63 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:Gejala_NyeriSaatGigit :dialamiOleh :Pasien_Trauma_Oklusi ;
-	:dipicuOleh :Tekanan .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_BauMulut
-
-:Kondisi_BauMulut a owl:NamedIndividual , :BauMulut , :KondisiGigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_GigiGoyang
-
-:Kondisi_GigiGoyang a owl:NamedIndividual , :GigiGoyang , :KondisiGigi , :TandaKerusakanJaringan .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_1
-
-:Pasien_1 a owl:NamedIndividual , :Pasien ;
-	:didugaMenderita :Penyakit_Pulpitis_Irreversible ;
-	:mengalamiGejala :Gejala_Ngilu , :Gejala_NyeriMalamHari .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_Periodontitis
-
-:Pasien_Periodontitis a owl:NamedIndividual , :Pasien ;
-	:didugaMenderita :Penyakit_Periodontitis ;
-	:mengalamiGejala :Gejala_GusiBerdarah ;
-	:mengalamiKondisi :Kondisi_BauMulut , :Kondisi_GigiGoyang .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_Trauma_Oklusi
-
-:Pasien_Trauma_Oklusi a owl:NamedIndividual , :Pasien ;
-	:didugaMenderita :Penyakit_Trauma_Oklusi ;
-	:mengalamiGejala :Gejala_NyeriSaatGigit ;
-	:mengalamiKondisi :Kondisi_GigiGoyang .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Periodontitis
-
-:Penyakit_Periodontitis a owl:NamedIndividual , :PenyakitGigi , :Periodontitis ;
-	:membutuhkanSpesialis <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Peridonsia> .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Pulpitis_Irreversible
-
-:Penyakit_Pulpitis_Irreversible a owl:NamedIndividual , :PenyakitGigi , :PulpitisIrreversible , _:genid66 .
-
-_:genid66 a owl:Class ;
-	owl:unionOf _:genid69 .
-
-_:genid69 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid68 .
-
-_:genid68 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid67 .
-
-_:genid67 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-
-:Penyakit_Pulpitis_Irreversible :membutuhkanSpesialis :Spesialis_Konservasi_Gigi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Pulpitis_Reversible
-
-:Penyakit_Pulpitis_Reversible a owl:NamedIndividual , :PulpitisReversible .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Trauma_Oklusi
-
-:Penyakit_Trauma_Oklusi a owl:NamedIndividual , :PenyakitGigi , :TraumaOklusi , _:genid70 .
-
-_:genid70 a owl:Class ;
-	owl:unionOf _:genid73 .
-
-_:genid73 a rdf:List ;
-	rdf:first :Gejala ;
-	rdf:rest _:genid72 .
-
-_:genid72 a rdf:List ;
-	rdf:first :KondisiGigi ;
-	rdf:rest _:genid71 .
-
-_:genid71 a rdf:List ;
-	rdf:first :PenyakitGigi ;
-	rdf:rest rdf:nil .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Spesialis_Konservasi_Gigi
-
-:Spesialis_Konservasi_Gigi a owl:NamedIndividual , :SpesialisEndodentis , :SpesialisGigi ;
-	:menanganiPenyakit :Penyakit_Pulpitis_Irreversible .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Spesialis_Umum
-
-:Spesialis_Umum a owl:NamedIndividual , :DokterGigiUmum , :SpesialisGigi ;
-	:menanganiPenyakit :Penyakit_Trauma_Oklusi .
-# 
-# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Tekanan
-
-:Tekanan a owl:NamedIndividual , :Pemicu , :TekananSaatMenggigit .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Rules
-# #
-# #################################################################
-# 
-# 
-
-:p a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:k a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:g a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:g1 a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:k1 a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:k2 a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:g2 a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:g3 a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:trig a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:detik a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:penyakit a <http://www.w3.org/2003/11/swrl#Variable> .
-
-:spesialis a <http://www.w3.org/2003/11/swrl#Variable> .
-
-_:genid108 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p2_infeksi_pasca_cabut"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid120 .
-
-_:genid120 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid117 .
-
-_:genid117 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RiwayatCabutGigi> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k1 .
-
-_:genid120 rdf:rest _:genid118 .
-
-_:genid118 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid130 .
-
-_:genid130 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid131 .
-
-_:genid131 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :g2 .
-
-_:genid130 rdf:rest _:genid128 .
-
-_:genid128 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid129 .
-
-_:genid129 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriPerkusi> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g2 .
-
-_:genid128 rdf:rest _:genid126 .
-
-_:genid126 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid127 .
-
-_:genid127 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :g3 .
-
-_:genid126 rdf:rest _:genid124 .
-
-_:genid124 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid125 .
-
-_:genid125 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :BengkakWajah ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g3 .
-
-_:genid124 rdf:rest rdf:nil .
-
-_:genid118 rdf:rest _:genid116 .
-
-_:genid116 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid117 ;
-	rdf:rest _:genid114 .
-
-_:genid114 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid133 .
-
-_:genid133 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid97 .
-
-_:genid97 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Kronis> .
-
-_:genid133 rdf:rest _:genid132 .
-
-_:genid132 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid129 ;
-	rdf:rest _:genid130 .
-
-_:genid114 rdf:rest _:genid112 .
-
-_:genid112 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid113 .
-
-_:genid113 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#LubangPascaCabut> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k2 .
-
-_:genid112 rdf:rest _:genid111 .
-
-_:genid111 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid145 .
-
-_:genid145 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid146 .
-
-_:genid146 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :PosisiMiring ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k2 .
-
-_:genid145 rdf:rest rdf:nil .
-
-_:genid111 rdf:rest _:genid109 .
-
-_:genid109 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid110 .
-
-_:genid110 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriHebat> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g .
-
-_:genid109 rdf:rest rdf:nil .
-
-_:genid108 <http://www.w3.org/2003/11/swrl#head> _:genid121 .
-
-_:genid121 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid122 .
-
-_:genid122 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Infeksi_Pasca_Cabut> .
-
-_:genid121 rdf:rest rdf:nil .
-
-_:genid123 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p3_abses_periapikal_akut_rule1"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid134 .
-
-_:genid134 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid113 ;
-	rdf:rest _:genid133 .
-
-_:genid123 <http://www.w3.org/2003/11/swrl#head> _:genid135 .
-
-_:genid135 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid136 .
-
-_:genid136 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Akut> .
-
-_:genid135 rdf:rest rdf:nil .
-
-_:genid137 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p2_radiks_relikta"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid141 .
-
-_:genid141 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid112 ;
-	rdf:rest _:genid140 .
-
-_:genid140 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid103 .
-
-_:genid103 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GusiBenjol> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k .
-
-_:genid140 rdf:rest _:genid138 .
-
-_:genid138 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid139 .
-
-_:genid139 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#SisaAkar> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k .
-
-_:genid138 rdf:rest rdf:nil .
-
-_:genid137 <http://www.w3.org/2003/11/swrl#head> _:genid142 .
-
-_:genid142 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid143 .
-
-_:genid143 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Radiks_Relikta> .
-
-_:genid142 rdf:rest rdf:nil .
-
-_:genid144 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p2_impaksi_molar_rule2"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid154 .
-
-_:genid154 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid126 ;
-	rdf:rest _:genid153 .
-
-_:genid153 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid102 .
-
-_:genid102 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid103 ;
-	rdf:rest _:genid101 .
-
-_:genid101 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid146 ;
-	rdf:rest _:genid99 .
-
-_:genid99 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid100 .
-
-_:genid100 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiPositifKuat> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g .
-
-_:genid99 rdf:rest rdf:nil .
-
-_:genid153 rdf:rest _:genid151 .
-
-_:genid151 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid152 .
-
-_:genid152 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :Trismus ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g1 .
-
-_:genid151 rdf:rest _:genid150 .
-
-_:genid150 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid131 ;
-	rdf:rest _:genid148 .
-
-_:genid148 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid149 .
-
-_:genid149 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :GigiErupsiSebagian ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k1 .
-
-_:genid148 rdf:rest _:genid147 .
-
-_:genid147 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid135 ;
-	rdf:rest _:genid145 .
-
-_:genid144 <http://www.w3.org/2003/11/swrl#head> _:genid155 .
-
-_:genid155 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid151 ;
-	rdf:rest rdf:nil .
-
-_:genid157 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p2_impaksi_molar_rule1"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid164 .
-
-_:genid164 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid125 ;
-	rdf:rest _:genid163 .
-
-_:genid163 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid132 ;
-	rdf:rest _:genid161 .
-
-_:genid161 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid162 .
-
-_:genid162 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :OperkulumBengkak ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k1 .
-
-_:genid161 rdf:rest _:genid160 .
-
-_:genid160 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid134 ;
-	rdf:rest _:genid158 .
-
-_:genid158 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid159 .
-
-_:genid159 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :GigiErupsiSebagian ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k2 .
-
-_:genid158 rdf:rest rdf:nil .
-
-_:genid157 <http://www.w3.org/2003/11/swrl#head> _:genid165 .
-
-_:genid165 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid150 ;
-	rdf:rest rdf:nil .
-
-_:genid166 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p4_periodontitis"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid173 .
 
-_:genid173 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid124 ;
-	rdf:rest _:genid172 .
-
-_:genid172 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid147 ;
-	rdf:rest _:genid170 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/mengalamiGejala
+:mengalamiGejala rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Pasien ;
+                 rdfs:range :Gejala .
 
-_:genid170 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid153 ;
-	rdf:rest _:genid169 .
 
-_:genid169 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid109 ;
-	rdf:rest _:genid167 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/mengalamiKondisi
+:mengalamiKondisi rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Pasien ;
+                  rdfs:range :KondisiGigi .
 
-_:genid167 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid159 ;
-	rdf:rest rdf:nil .
 
-_:genid166 <http://www.w3.org/2003/11/swrl#head> _:genid174 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/menyebabkan
+:menyebabkan rdf:type owl:ObjectProperty ,
+                      owl:TransitiveProperty ;
+             rdfs:domain :KondisiGigi ;
+             rdfs:range :PenyakitGigi ,
+                        [ rdf:type owl:Class ;
+                          owl:unionOf ( :Gejala
+                                        :KondisiGigi
+                                        :PenyakitGigi
+                                      )
+                        ] .
 
-_:genid174 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid175 .
 
-_:genid175 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Periodontitis .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/tingkatUrgensi
+:tingkatUrgensi rdf:type owl:ObjectProperty ;
+                rdfs:domain :PenyakitGigi ,
+                            [ rdf:type owl:Class ;
+                              owl:unionOf ( :Gejala
+                                            :KondisiGigi
+                                            :PenyakitGigi
+                                          )
+                            ] ;
+                rdfs:range :Gejala .
 
-_:genid174 rdf:rest rdf:nil .
 
-_:genid176 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p_trauma_okulsi"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid186 .
+#################################################################
+#    Data properties
+#################################################################
 
-_:genid186 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid120 ;
-	rdf:rest _:genid185 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#durasiNyeri
+:durasiNyeri rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Nyeri ;
+             rdfs:range xsd:unsignedInt .
 
-_:genid185 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid108 ;
-	rdf:rest _:genid184 .
 
-_:genid184 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid158 ;
-	rdf:rest _:genid183 .
+#################################################################
+#    Classes
+#################################################################
 
-_:genid183 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid98 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikal
+:AbsesPeriapikal rdf:type owl:Class ;
+                 rdfs:subClassOf :PenyakitPulpa .
 
-_:genid98 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p4_abses_periodontal"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid105 .
 
-_:genid105 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid119 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikalAkut
+:AbsesPeriapikalAkut rdf:type owl:Class ;
+                     rdfs:subClassOf :AbsesPeriapikal .
 
-_:genid119 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :k1 .
 
-_:genid105 rdf:rest _:genid104 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriodontal
+:AbsesPeriodontal rdf:type owl:Class ;
+                  rdfs:subClassOf :PenyakitPeriodontal .
 
-_:genid104 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid107 .
 
-_:genid107 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periodontal> .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Discoloration
+:Discoloration rdf:type owl:Class ;
+               owl:equivalentClass :GigiGelap ;
+               rdfs:subClassOf :GigiBerwarna .
 
-_:genid104 rdf:rest _:genid102 .
 
-_:genid98 <http://www.w3.org/2003/11/swrl#head> _:genid106 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#FistulaGusi
+:FistulaGusi rdf:type owl:Class ;
+             rdfs:subClassOf :KondisiGusi ,
+                             :Gejala .
 
-_:genid106 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid107 ;
-	rdf:rest rdf:nil .
 
-_:genid183 rdf:rest _:genid181 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiBerwarna
+:GigiBerwarna rdf:type owl:Class ;
+              rdfs:subClassOf :KondisiGigi .
 
-_:genid181 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid182 .
 
-_:genid182 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :NyeriSaatMenggigit ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g1 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiGelap
+:GigiGelap rdf:type owl:Class ;
+           rdfs:subClassOf :GigiBerwarna .
 
-_:genid181 rdf:rest _:genid179 .
 
-_:genid179 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid180 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GigiKekuningan
+:GigiKekuningan rdf:type owl:Class ;
+                rdfs:subClassOf :GigiBerwarna .
 
-_:genid180 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :dipicuOleh ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :trig .
 
-_:genid179 rdf:rest _:genid177 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#GusiBenjol
+:GusiBenjol rdf:type owl:Class ;
+            rdfs:subClassOf :KondisiGusi ,
+                            :Gejala .
 
-_:genid177 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid178 .
 
-_:genid178 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :TekananSaatMenggigit ;
-	<http://www.w3.org/2003/11/swrl#argument1> :trig .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ImpaksiMolar
+:ImpaksiMolar rdf:type owl:Class ;
+              rdfs:subClassOf :KelainanStruktural .
 
-_:genid177 rdf:rest rdf:nil .
 
-_:genid176 <http://www.w3.org/2003/11/swrl#head> _:genid187 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#InfeksiPascaCabut
+:InfeksiPascaCabut rdf:type owl:Class ;
+                   rdfs:subClassOf :KelainanStruktural .
 
-_:genid187 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid188 .
 
-_:genid188 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Trauma_Oklusi .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KariesGigi
+:KariesGigi rdf:type owl:Class ;
+            rdfs:subClassOf :KondisiGigi .
 
-_:genid187 rdf:rest rdf:nil .
 
-_:genid189 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment "Penyakit Radang Gusi"^^xsd:string ;
-	rdfs:label "p4_gingivitis"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid195 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KariesProfunda
+:KariesProfunda rdf:type owl:Class ;
+                rdfs:subClassOf :KariesGigi .
 
-_:genid195 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid118 ;
-	rdf:rest _:genid194 .
 
-_:genid194 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid143 ;
-	rdf:rest _:genid193 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KelainanStruktural
+:KelainanStruktural rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :membutuhkanSpesialis ;
+                                          owl:hasValue :Spesialis_Bedah_Mulut
+                                        ] ;
+                    rdfs:subClassOf :PenyakitGigi .
 
-_:genid193 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid152 ;
-	rdf:rest _:genid192 .
 
-_:genid192 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid106 ;
-	rdf:rest _:genid190 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiGusi
+:KondisiGusi rdf:type owl:Class ;
+             rdfs:subClassOf :KondisiMulut .
 
-_:genid190 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid191 .
 
-_:genid191 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :KarangGigi ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiMulut
+:KondisiMulut rdf:type owl:Class .
 
-_:genid190 rdf:rest rdf:nil .
 
-_:genid189 <http://www.w3.org/2003/11/swrl#head> _:genid196 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#LubangPascaCabut
+:LubangPascaCabut rdf:type owl:Class ;
+                  rdfs:subClassOf :KondisiGigi .
 
-_:genid196 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid197 .
 
-_:genid197 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Gingivitis> .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NekrosisPulpa
+:NekrosisPulpa rdf:type owl:Class ;
+               rdfs:subClassOf :PenyakitPulpa .
 
-_:genid196 rdf:rest rdf:nil .
 
-_:genid198 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment "Dipicu oleh stimulus dingin dan durasi lebih dari 30 detik"^^xsd:string ;
-	rdfs:label "p3_pulpitis_irreversible_rule1"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid212 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriHebat
+:NyeriHebat rdf:type owl:Class ;
+            rdfs:subClassOf :Nyeri .
 
-_:genid212 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid123 ;
-	rdf:rest _:genid211 .
 
-_:genid211 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid100 ;
-	rdf:rest _:genid209 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriPalpasi
+:NyeriPalpasi rdf:type owl:Class ;
+              rdfs:subClassOf :Nyeri .
 
-_:genid209 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid136 ;
-	rdf:rest _:genid207 .
 
-_:genid207 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid155 ;
-	rdf:rest _:genid205 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriPerkusi
+:NyeriPerkusi rdf:type owl:Class ;
+              rdfs:subClassOf :Nyeri .
 
-_:genid205 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid156 .
 
-_:genid156 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Impaksi_Molar> .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal
+:PenyakitPeriodontal rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty :membutuhkanSpesialis ;
+                                           owl:hasValue :Spesialis_Periodonsia
+                                         ] ;
+                     rdfs:subClassOf :PenyakitGigi .
 
-_:genid205 rdf:rest _:genid203 .
 
-_:genid203 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid160 ;
-	rdf:rest _:genid199 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPulpa
+:PenyakitPulpa rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty :membutuhkanSpesialis ;
+                                     owl:hasValue :Spesialis_Konservasi_Gigi
+                                   ] ;
+               rdfs:subClassOf :PenyakitGigi .
 
-_:genid199 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid200 .
 
-_:genid200 a <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-	<http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PeriapikalKronis
+:PeriapikalKronis rdf:type owl:Class ;
+                  rdfs:subClassOf :KelainanStruktural .
 
-<http://www.w3.org/2003/11/swrlb#greaterThan> a <http://www.w3.org/2003/11/swrl#Builtin> .
 
-_:genid200 <http://www.w3.org/2003/11/swrl#arguments> _:genid202 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RadiksRelikta
+:RadiksRelikta rdf:type owl:Class ;
+               rdfs:subClassOf :KelainanStruktural .
 
-_:genid202 a rdf:List ;
-	rdf:first :detik ;
-	rdf:rest _:genid201 .
 
-_:genid201 a rdf:List ;
-	rdf:first "30"^^xsd:int ;
-	rdf:rest rdf:nil .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiNegatif
+:ResponGigiNegatif rdf:type owl:Class ;
+                   rdfs:subClassOf :Gejala .
 
-_:genid199 rdf:rest rdf:nil .
 
-_:genid198 <http://www.w3.org/2003/11/swrl#head> _:genid213 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiPositifKuat
+:ResponGigiPositifKuat rdf:type owl:Class ;
+                       rdfs:subClassOf :Gejala .
 
-_:genid213 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid140 ;
-	rdf:rest rdf:nil .
 
-_:genid215 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p1_pulpitis_reversible_rule"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid225 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#RiwayatCabutGigi
+:RiwayatCabutGigi rdf:type owl:Class ;
+                  rdfs:subClassOf :KondisiGigi .
 
-_:genid225 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid122 ;
-	rdf:rest _:genid224 .
 
-_:genid224 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid99 ;
-	rdf:rest _:genid223 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#SisaAkar
+:SisaAkar rdf:type owl:Class ;
+          rdfs:subClassOf :KondisiGigi .
 
-_:genid223 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid137 ;
-	rdf:rest _:genid222 .
 
-_:genid222 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid154 ;
-	rdf:rest _:genid221 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/BauMulut
+:BauMulut rdf:type owl:Class ;
+          rdfs:subClassOf :KondisiGigi .
 
-_:genid221 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid157 ;
-	rdf:rest _:genid220 .
 
-_:genid220 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid161 ;
-	rdf:rest _:genid216 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/BengkakWajah
+:BengkakWajah rdf:type owl:Class ;
+              rdfs:subClassOf :Gejala .
 
-_:genid216 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid217 .
 
-_:genid217 a <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-	<http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/DokterGigiUmum
+:DokterGigiUmum rdf:type owl:Class ;
+                rdfs:subClassOf :SpesialisGigi .
 
-<http://www.w3.org/2003/11/swrlb#lessThanOrEqual> a <http://www.w3.org/2003/11/swrl#Builtin> .
 
-_:genid217 <http://www.w3.org/2003/11/swrl#arguments> _:genid219 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala
+:Gejala rdf:type owl:Class ;
+        owl:disjointWith :PenyakitGigi .
 
-_:genid219 a rdf:List ;
-	rdf:first :detik ;
-	rdf:rest _:genid218 .
 
-_:genid218 a rdf:List ;
-	rdf:first "10"^^xsd:int ;
-	rdf:rest rdf:nil .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiBerlubang
+:GigiBerlubang rdf:type owl:Class ;
+               rdfs:subClassOf :KondisiGigi .
 
-_:genid216 rdf:rest rdf:nil .
 
-_:genid215 <http://www.w3.org/2003/11/swrl#head> _:genid226 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiErupsi
+:GigiErupsi rdf:type owl:Class ;
+            rdfs:subClassOf :KondisiGigi .
 
-_:genid226 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid227 .
 
-_:genid227 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Pulpitis_Reversible .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiErupsiSebagian
+:GigiErupsiSebagian rdf:type owl:Class ;
+                    rdfs:subClassOf :GigiErupsi .
 
-_:genid226 rdf:rest rdf:nil .
 
-_:genid228 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p3_pulpitis_irreversible_rule3"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid232 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiErupsiSempurna
+:GigiErupsiSempurna rdf:type owl:Class ;
+                    rdfs:subClassOf :GigiErupsi .
 
-_:genid232 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid121 ;
-	rdf:rest _:genid231 .
 
-_:genid231 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid144 ;
-	rdf:rest _:genid229 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GigiGoyang
+:GigiGoyang rdf:type owl:Class ;
+            rdfs:subClassOf :TandaKerusakanJaringan .
 
-_:genid229 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid230 .
 
-_:genid230 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :NyeriMalamHari ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gingivitis
+:Gingivitis rdf:type owl:Class ;
+            rdfs:subClassOf :PenyakitPeriodontal ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :berkembangMenjadi ;
+                              owl:someValuesFrom :Periodontitis
+                            ] ;
+            rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D005891> .
 
-_:genid229 rdf:rest rdf:nil .
 
-_:genid228 <http://www.w3.org/2003/11/swrl#head> _:genid233 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GusiBerdarah
+:GusiBerdarah rdf:type owl:Class ;
+              rdfs:subClassOf :KondisiGusi ,
+                              :Gejala .
 
-_:genid233 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid139 ;
-	rdf:rest rdf:nil .
 
-_:genid234 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p2_impaksi_molar_rule3"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid241 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/GusiTurun
+:GusiTurun rdf:type owl:Class ;
+           rdfs:subClassOf :TandaKerusakanJaringan .
 
-_:genid241 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid116 ;
-	rdf:rest _:genid240 .
 
-_:genid240 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid142 ;
-	rdf:rest _:genid238 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/HipersensitivitasDentin
+:HipersensitivitasDentin rdf:type owl:Class ;
+                         rdfs:subClassOf :PenyakitGigi ,
+                                         [ rdf:type owl:Class ;
+                                           owl:unionOf ( :Gejala
+                                                         :KondisiGigi
+                                                         :PenyakitGigi
+                                                       )
+                                         ] ;
+                         rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D003807> .
 
-_:genid238 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid239 .
 
-_:genid239 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :NyeriRahangBelakang ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KantungGusiDalam
+:KantungGusiDalam rdf:type owl:Class ;
+                  rdfs:subClassOf :TandaKerusakanJaringan .
 
-_:genid238 rdf:rest _:genid237 .
 
-_:genid237 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid105 ;
-	rdf:rest _:genid235 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KarangGigi
+:KarangGigi rdf:type owl:Class ;
+            rdfs:subClassOf :KondisiGigi ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :menyebabkan ;
+                              owl:someValuesFrom :Gingivitis
+                            ] .
 
-_:genid235 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid236 .
 
-_:genid236 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :PosisiMiring ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KondisiGigi
+:KondisiGigi rdf:type owl:Class ;
+             rdfs:subClassOf :KondisiMulut .
 
-_:genid235 rdf:rest rdf:nil .
 
-_:genid234 <http://www.w3.org/2003/11/swrl#head> _:genid242 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Ngilu
+:Ngilu rdf:type owl:Class ;
+       owl:equivalentClass [ rdf:type owl:Restriction ;
+                             owl:onProperty :dipicuOleh ;
+                             owl:someValuesFrom :Pemicu
+                           ] ;
+       rdfs:subClassOf :Gejala .
 
-_:genid242 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid149 ;
-	rdf:rest rdf:nil .
 
-_:genid243 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment "Nyeri tidak dipicu apapun"^^xsd:string ;
-	rdfs:label "p3_pulpitis_irreversible_rule2"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid247 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Nyeri
+:Nyeri rdf:type owl:Class ;
+       rdfs:subClassOf :Gejala .
 
-_:genid247 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid115 .
 
-_:genid115 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :k2 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriMalamHari
+:NyeriMalamHari rdf:type owl:Class ;
+                rdfs:subClassOf :Nyeri .
 
-_:genid247 rdf:rest _:genid246 .
 
-_:genid246 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid141 ;
-	rdf:rest _:genid244 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriMenelan
+:NyeriMenelan rdf:type owl:Class ;
+              rdfs:subClassOf :Nyeri .
 
-_:genid244 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid245 .
 
-_:genid245 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> :NyeriSpontan ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriRahangBelakang
+:NyeriRahangBelakang rdf:type owl:Class ;
+                     rdfs:subClassOf :Nyeri .
 
-_:genid244 rdf:rest rdf:nil .
 
-_:genid243 <http://www.w3.org/2003/11/swrl#head> _:genid248 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSaatMenggigit
+:NyeriSaatMenggigit rdf:type owl:Class ;
+                    rdfs:subClassOf :Nyeri .
 
-_:genid248 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid138 ;
-	rdf:rest rdf:nil .
 
-_:genid249 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "rekomendasi_spesialis_rule"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid254 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSpontan
+:NyeriSpontan rdf:type owl:Class ;
+              rdfs:subClassOf :Nyeri .
 
-_:genid254 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid111 ;
-	rdf:rest _:genid252 .
 
-_:genid252 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid253 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/OperkulumBengkak
+:OperkulumBengkak rdf:type owl:Class ;
+                  rdfs:subClassOf :KondisiGigi .
 
-_:genid253 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :penyakit .
 
-_:genid252 rdf:rest _:genid250 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien
+:Pasien rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:oneOf ( :Pasien_1
+                                          :Pasien_Periodontitis
+                                          :Pasien_Trauma_Oklusi
+                                        )
+                            ] .
 
-_:genid250 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid251 .
 
-_:genid251 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :membutuhkanSpesialis ;
-	<http://www.w3.org/2003/11/swrl#argument1> :penyakit ;
-	<http://www.w3.org/2003/11/swrl#argument2> :spesialis .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pemicu
+:Pemicu rdf:type owl:Class ;
+        owl:disjointWith :PenyakitGigi .
 
-_:genid250 rdf:rest rdf:nil .
 
-_:genid249 <http://www.w3.org/2003/11/swrl#head> _:genid255 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PenyakitGigi
+:PenyakitGigi rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Class ;
+                                owl:unionOf ( :KondisiGigi
+                                              :PenyakitGigi
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :memilikiGejala ;
+                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                owl:onClass :Gejala
+                                              ]
+                                            )
+                              ] .
 
-_:genid255 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid256 .
 
-_:genid256 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#dirujukKe> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> :spesialis .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Periodontitis
+:Periodontitis rdf:type owl:Class ;
+               rdfs:subClassOf :PenyakitPeriodontal ,
+                               [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Gejala
+                                               :KondisiGigi
+                                               :PenyakitGigi
+                                             )
+                               ] ;
+               rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D010518> .
 
-_:genid255 rdf:rest rdf:nil .
 
-_:genid74 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p3_nekrosis_pulpa"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid83 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PlakGigi
+:PlakGigi rdf:type owl:Class ;
+          rdfs:subClassOf :KondisiGigi ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :menyebabkan ;
+                            owl:someValuesFrom :KarangGigi
+                          ] .
 
-_:genid83 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid127 ;
-	rdf:rest _:genid81 .
 
-_:genid81 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid110 ;
-	rdf:rest _:genid79 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiGigi
+:PosisiGigi rdf:type owl:Class ;
+            rdfs:subClassOf :KondisiGigi .
 
-_:genid79 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid80 .
 
-_:genid80 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Discoloration> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiHorizontal
+:PosisiHorizontal rdf:type owl:Class ;
+                  rdfs:subClassOf :PosisiGigi .
 
-_:genid79 rdf:rest _:genid77 .
 
-_:genid77 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid148 ;
-	rdf:rest _:genid75 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiMiring
+:PosisiMiring rdf:type owl:Class ;
+              rdfs:subClassOf :PosisiGigi .
 
-_:genid75 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid76 .
 
-_:genid76 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#ResponGigiNegatif> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :g .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PulpitisIrreversible
+:PulpitisIrreversible rdf:type owl:Class ;
+                      rdfs:subClassOf :PenyakitPulpa ;
+                      rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D011671> .
 
-_:genid75 rdf:rest rdf:nil .
 
-_:genid74 <http://www.w3.org/2003/11/swrl#head> _:genid85 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PulpitisReversible
+:PulpitisReversible rdf:type owl:Class ;
+                    rdfs:subClassOf :PenyakitPulpa ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :berkembangMenjadi ;
+                                      owl:someValuesFrom :PulpitisIrreversible
+                                    ] ;
+                    rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D011671> .
 
-_:genid85 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid86 .
 
-_:genid86 a <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-	<http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-	<http://www.w3.org/2003/11/swrl#argument1> :p ;
-	<http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Nekrosis_Pulpa> .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisBedahMulut
+:SpesialisBedahMulut rdf:type owl:Class ;
+                     rdfs:subClassOf :SpesialisGigi .
 
-_:genid85 rdf:rest rdf:nil .
 
-_:genid87 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-	rdfs:comment ""^^xsd:string ;
-	rdfs:label "p3_periapikal_kronis_rule1"^^xsd:string ;
-	a <http://www.w3.org/2003/11/swrl#Imp> ;
-	<http://www.w3.org/2003/11/swrl#body> _:genid95 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisEndodentis
+:SpesialisEndodentis rdf:type owl:Class ;
+                     rdfs:subClassOf :SpesialisGigi .
 
-_:genid95 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid114 ;
-	rdf:rest _:genid94 .
 
-_:genid94 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid104 ;
-	rdf:rest _:genid92 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisGigi
+:SpesialisGigi rdf:type owl:Class .
 
-_:genid92 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid93 .
 
-_:genid93 a <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-	<http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#FistulaGusi> ;
-	<http://www.w3.org/2003/11/swrl#argument1> :k .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/SpesialisPeriodonsia
+:SpesialisPeriodonsia rdf:type owl:Class ;
+                      rdfs:subClassOf :SpesialisGigi .
 
-_:genid92 rdf:rest _:genid90 .
 
-_:genid90 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid101 ;
-	rdf:rest _:genid88 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/StimulusDingin
+:StimulusDingin rdf:type owl:Class ;
+                rdfs:subClassOf :Pemicu .
 
-_:genid88 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid128 ;
-	rdf:rest rdf:nil .
 
-_:genid87 <http://www.w3.org/2003/11/swrl#head> _:genid96 .
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/StimulusPanas
+:StimulusPanas rdf:type owl:Class ;
+               rdfs:subClassOf :Pemicu .
 
-_:genid96 a <http://www.w3.org/2003/11/swrl#AtomList> ;
-	rdf:first _:genid97 ;
-	rdf:rest rdf:nil .
-# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TandaKerusakanJaringan
+:TandaKerusakanJaringan rdf:type owl:Class ;
+                        rdfs:subClassOf :KondisiGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TekananSaatMenggigit
+:TekananSaatMenggigit rdf:type owl:Class ;
+                      rdfs:subClassOf :Pemicu .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/TraumaOklusi
+:TraumaOklusi rdf:type owl:Class ;
+              rdfs:subClassOf :PenyakitGigi ,
+                              [ rdf:type owl:Class ;
+                                owl:unionOf ( :Gejala
+                                              :KondisiGigi
+                                              :PenyakitGigi
+                                            )
+                              ] ;
+              rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D003766> .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Trismus
+:Trismus rdf:type owl:Class ;
+         rdfs:subClassOf :Gejala .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Respon_Gigi_Negatif
+:Gejala_Respon_Gigi_Negatif rdf:type owl:NamedIndividual ,
+                                     :ResponGigiNegatif .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Trismus
+:Gejala_Trismus rdf:type owl:NamedIndividual ,
+                         :Trismus .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Fistula_Gusi
+:Kondisi_Fistula_Gusi rdf:type owl:NamedIndividual ,
+                               :FistulaGusi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Gigi_Erupsi_Sebagian
+:Kondisi_Gigi_Erupsi_Sebagian rdf:type owl:NamedIndividual ,
+                                       :GigiErupsiSebagian .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Posisi_Gigi_Miring
+:Kondisi_Posisi_Gigi_Miring rdf:type owl:NamedIndividual ,
+                                     :PosisiMiring .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_Impaksi_Molar
+:Pasien_Impaksi_Molar rdf:type owl:NamedIndividual ,
+                               :Pasien ;
+                      :mengalamiGejala :Gejala_Trismus ;
+                      :mengalamiKondisi :Kondisi_Gigi_Erupsi_Sebagian ,
+                                        :Kondisi_Posisi_Gigi_Miring .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_Periapikal_Kronis
+:Pasien_Periapikal_Kronis rdf:type owl:NamedIndividual ,
+                                   :Pasien ;
+                          :mengalamiGejala :Gejala_Respon_Gigi_Negatif ;
+                          :mengalamiKondisi :Kondisi_Fistula_Gusi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Akut
+:Penyakit_Abses_Periapikal_Akut rdf:type owl:NamedIndividual ,
+                                         :AbsesPeriapikalAkut ,
+                                         :PenyakitGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periapikal_Kronis
+:Penyakit_Abses_Periapikal_Kronis rdf:type owl:NamedIndividual ,
+                                           :PeriapikalKronis ,
+                                           :PenyakitGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Abses_Periodontal
+:Penyakit_Abses_Periodontal rdf:type owl:NamedIndividual ,
+                                     :AbsesPeriodontal .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Gingivitis
+:Penyakit_Gingivitis rdf:type owl:NamedIndividual ,
+                              :Gingivitis .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Impaksi_Molar
+:Penyakit_Impaksi_Molar rdf:type owl:NamedIndividual ,
+                                 :ImpaksiMolar ,
+                                 :PenyakitGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Infeksi_Pasca_Cabut
+:Penyakit_Infeksi_Pasca_Cabut rdf:type owl:NamedIndividual ,
+                                       :InfeksiPascaCabut .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Nekrosis_Pulpa
+:Penyakit_Nekrosis_Pulpa rdf:type owl:NamedIndividual ,
+                                  :NekrosisPulpa .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Penyakit_Radiks_Relikta
+:Penyakit_Radiks_Relikta rdf:type owl:NamedIndividual ,
+                                  :RadiksRelikta .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Bedah_Mulut
+:Spesialis_Bedah_Mulut rdf:type owl:NamedIndividual ,
+                                :SpesialisBedahMulut .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Peridonsia
+:Spesialis_Peridonsia rdf:type owl:NamedIndividual ,
+                               :SpesialisPeriodonsia .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Spesialis_Periodonsia
+:Spesialis_Periodonsia rdf:type owl:NamedIndividual ,
+                                :SpesialisPeriodonsia .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Stimulus_Dingin
+:Stimulus_Dingin rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Stimulus_Panas
+:Stimulus_Panas rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_GusiBerdarah
+:Gejala_GusiBerdarah rdf:type owl:NamedIndividual ,
+                              :Gejala ,
+                              :GusiBerdarah ;
+                     :dialamiOleh :Pasien_Periodontitis .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_Ngilu
+:Gejala_Ngilu rdf:type owl:NamedIndividual ,
+                       :Gejala ,
+                       :Ngilu ;
+              :dialamiOleh :Pasien_1 .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_NyeriMalamHari
+:Gejala_NyeriMalamHari rdf:type owl:NamedIndividual ,
+                                :Gejala ,
+                                :NyeriMalamHari ;
+                       :dialamiOleh :Pasien_1 .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_NyeriSaatGigit
+:Gejala_NyeriSaatGigit rdf:type owl:NamedIndividual ,
+                                :Gejala ,
+                                :NyeriSaatMenggigit ,
+                                [ rdf:type owl:Class ;
+                                  owl:unionOf ( :Gejala
+                                                :KondisiGigi
+                                                :PenyakitGigi
+                                              )
+                                ] ;
+                       :dialamiOleh :Pasien_Trauma_Oklusi ;
+                       :dipicuOleh :Tekanan .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_BauMulut
+:Kondisi_BauMulut rdf:type owl:NamedIndividual ,
+                           :BauMulut ,
+                           :KondisiGigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_GigiGoyang
+:Kondisi_GigiGoyang rdf:type owl:NamedIndividual ,
+                             :GigiGoyang ,
+                             :KondisiGigi ,
+                             :TandaKerusakanJaringan .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_1
+:Pasien_1 rdf:type owl:NamedIndividual ,
+                   :Pasien ;
+          :didugaMenderita :Penyakit_Pulpitis_Irreversible ;
+          :mengalamiGejala :Gejala_Ngilu ,
+                           :Gejala_NyeriMalamHari .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_Periodontitis
+:Pasien_Periodontitis rdf:type owl:NamedIndividual ,
+                               :Pasien ;
+                      :didugaMenderita :Penyakit_Periodontitis ;
+                      :mengalamiGejala :Gejala_GusiBerdarah ;
+                      :mengalamiKondisi :Kondisi_BauMulut ,
+                                        :Kondisi_GigiGoyang .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_Trauma_Oklusi
+:Pasien_Trauma_Oklusi rdf:type owl:NamedIndividual ,
+                               :Pasien ;
+                      :didugaMenderita :Penyakit_Trauma_Oklusi ;
+                      :mengalamiGejala :Gejala_NyeriSaatGigit ;
+                      :mengalamiKondisi :Kondisi_GigiGoyang .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Periodontitis
+:Penyakit_Periodontitis rdf:type owl:NamedIndividual ,
+                                 :PenyakitGigi ,
+                                 :Periodontitis ;
+                        :membutuhkanSpesialis :Spesialis_Peridonsia .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Pulpitis_Irreversible
+:Penyakit_Pulpitis_Irreversible rdf:type owl:NamedIndividual ,
+                                         :PenyakitGigi ,
+                                         :PulpitisIrreversible ,
+                                         [ rdf:type owl:Class ;
+                                           owl:unionOf ( :Gejala
+                                                         :KondisiGigi
+                                                         :PenyakitGigi
+                                                       )
+                                         ] ;
+                                :membutuhkanSpesialis :Spesialis_Konservasi_Gigi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Pulpitis_Reversible
+:Penyakit_Pulpitis_Reversible rdf:type owl:NamedIndividual ,
+                                       :PulpitisReversible .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Trauma_Oklusi
+:Penyakit_Trauma_Oklusi rdf:type owl:NamedIndividual ,
+                                 :PenyakitGigi ,
+                                 :TraumaOklusi ,
+                                 [ rdf:type owl:Class ;
+                                   owl:unionOf ( :Gejala
+                                                 :KondisiGigi
+                                                 :PenyakitGigi
+                                               )
+                                 ] .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Spesialis_Konservasi_Gigi
+:Spesialis_Konservasi_Gigi rdf:type owl:NamedIndividual ,
+                                    :SpesialisEndodentis ,
+                                    :SpesialisGigi ;
+                           :menanganiPenyakit :Penyakit_Pulpitis_Irreversible .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Spesialis_Umum
+:Spesialis_Umum rdf:type owl:NamedIndividual ,
+                         :DokterGigiUmum ,
+                         :SpesialisGigi ;
+                :menanganiPenyakit :Penyakit_Trauma_Oklusi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Tekanan
+:Tekanan rdf:type owl:NamedIndividual ,
+                  :Pemicu ,
+                  :TekananSaatMenggigit .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+:p rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:k rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:g rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:k1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:k2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:g1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:g2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:g3 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:trig rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:detik rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:penyakit rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:spesialis rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p4_abses_periodontal" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :GusiBenjol ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :ResponGigiPositifKuat ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Abses_Periodontal
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p2_radiks_relikta" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :k1
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :SisaAkar ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :k1
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k2
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :GusiBenjol ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k2
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Radiks_Relikta
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p2_infeksi_pasca_cabut" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :k1
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :RiwayatCabutGigi ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :k1
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k2
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :LubangPascaCabut ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k2
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :NyeriHebat ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Infeksi_Pasca_Cabut
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p3_abses_periapikal_akut_rule1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g1
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :ResponGigiNegatif ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g1
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :g2
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :NyeriPerkusi ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :g2
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :g3
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :BengkakWajah ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :g3
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Abses_Periapikal_Akut
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p2_impaksi_molar_rule2" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Trismus ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k1
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :GigiErupsiSebagian ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k1
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :k2
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :PosisiMiring ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :k2
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Impaksi_Molar
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p2_impaksi_molar_rule1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :k1
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :OperkulumBengkak ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :k1
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k2
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :GigiErupsiSebagian ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k2
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Impaksi_Molar
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p4_periodontitis" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :GusiBerdarah ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :GigiGoyang ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Periodontitis
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p4_gingivitis" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :GusiBerdarah ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :KarangGigi ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Gingivitis
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p3_pulpitis_irreversible_rule1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Ngilu ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :dipicuOleh ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :trig
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :StimulusDingin ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :trig
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :durasiNyeri ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :detik
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                      rdf:first :detik ;
+                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                 rdf:first 30 ;
+                                                                                                                                                                                 rdf:rest rdf:nil
+                                                                                                                                                                               ]
+                                                                                                                                                                    ]
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Pulpitis_Irreversible
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p1_pulpitis_reversible_rule" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Ngilu ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :dipicuOleh ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :trig
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :StimulusDingin ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :trig
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :durasiNyeri ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :detik
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                      rdf:first :detik ;
+                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                 rdf:first 10 ;
+                                                                                                                                                                                 rdf:rest rdf:nil
+                                                                                                                                                                               ]
+                                                                                                                                                                    ]
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Pulpitis_Reversible
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p3_pulpitis_irreversible_rule3" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :NyeriMalamHari ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Pulpitis_Irreversible
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p2_impaksi_molar_rule3" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :NyeriRahangBelakang ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :PosisiMiring ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Impaksi_Molar
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p_trauma_okulsi" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :NyeriSaatMenggigit ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :dipicuOleh ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :trig
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :TekananSaatMenggigit ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :trig
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Trauma_Oklusi
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p3_pulpitis_irreversible_rule2" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :NyeriSpontan ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Pulpitis_Irreversible
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "rekomendasi_spesialis_rule" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :penyakit
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :membutuhkanSpesialis ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :penyakit ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :spesialis
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :dirujukKe ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :spesialis
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p3_nekrosis_pulpa" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Discoloration ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :ResponGigiNegatif ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Nekrosis_Pulpa
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "p3_periapikal_kronis_rule1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :FistulaGusi ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :ResponGigiNegatif ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Penyakit_Abses_Periapikal_Kronis
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
