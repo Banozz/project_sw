@@ -169,7 +169,7 @@
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikal
 :AbsesPeriapikal rdf:type owl:Class ;
                  rdfs:subClassOf :PenyakitPulpa ;
-                 rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D010482 > .
+                 rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D010482> .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#AbsesPeriapikalAkut
@@ -295,7 +295,7 @@
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NekrosisPulpa
 :NekrosisPulpa rdf:type owl:Class ;
                rdfs:subClassOf :PenyakitPulpa ;
-               rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D003790 > .
+               rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D003790> .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#NyeriHebat
@@ -491,90 +491,107 @@
 :NyeriMenelan rdf:type owl:Class ;
               rdfs:subClassOf :Nyeri .
 
+:NyeriSpontan a owl:Class ;
+	rdfs:subClassOf :Nyeri .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/OperkulumBengkak
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriRahangBelakang
-:NyeriRahangBelakang rdf:type owl:Class ;
-                     rdfs:subClassOf :Nyeri .
+:OperkulumBengkak a owl:Class ;
+	rdfs:subClassOf :KondisiGigi .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien
 
+:Pasien a owl:Class ;
+	owl:equivalentClass _:genid43 .
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSaatMenggigit
-:NyeriSaatMenggigit rdf:type owl:Class ;
-                    rdfs:subClassOf :Nyeri .
+_:genid43 a owl:Class ;
+	owl:oneOf _:genid46 .
 
+_:genid46 a rdf:List ;
+	rdf:first :Pasien_1 ;
+	rdf:rest _:genid45 .
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSpontan
-:NyeriSpontan rdf:type owl:Class ;
-              rdfs:subClassOf :Nyeri .
+_:genid45 a rdf:List ;
+	rdf:first :Pasien_Periodontitis ;
+	rdf:rest _:genid44 .
 
+_:genid44 a rdf:List ;
+	rdf:first :Pasien_Trauma_Oklusi ;
+	rdf:rest rdf:nil .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pemicu
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/OperkulumBengkak
-:OperkulumBengkak rdf:type owl:Class ;
-                  rdfs:subClassOf :KondisiGigi .
+:Pemicu a owl:Class ;
+	owl:disjointWith :PenyakitGigi .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PenyakitGigi
 
+:PenyakitGigi a owl:Class ;
+	rdfs:subClassOf _:genid47 .
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien
-:Pasien rdf:type owl:Class ;
-        owl:equivalentClass [ rdf:type owl:Class ;
-                              owl:oneOf ( :Pasien_1
-                                          :Pasien_Periodontitis
-                                          :Pasien_Trauma_Oklusi
-                                        )
-                            ] .
+_:genid47 a owl:Class ;
+	owl:unionOf _:genid51 .
 
+_:genid51 a rdf:List ;
+	rdf:first :KondisiGigi ;
+	rdf:rest _:genid50 .
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pemicu
-:Pemicu rdf:type owl:Class ;
-        owl:disjointWith :PenyakitGigi .
+_:genid50 a rdf:List ;
+	rdf:first :PenyakitGigi ;
+	rdf:rest _:genid48 .
 
+_:genid48 a rdf:List ;
+	rdf:first _:genid49 .
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PenyakitGigi
-:PenyakitGigi rdf:type owl:Class ;
-              rdfs:subClassOf [ rdf:type owl:Class ;
-                                owl:unionOf ( :KondisiGigi
-                                              :PenyakitGigi
-                                              [ rdf:type owl:Restriction ;
-                                                owl:onProperty :memilikiGejala ;
-                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                owl:onClass :Gejala
-                                              ]
-                                            )
-                              ] .
+_:genid49 a owl:Restriction ;
+	owl:onProperty :memilikiGejala ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :Gejala .
 
+_:genid48 rdf:rest rdf:nil .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Periodontitis
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Periodontitis
-:Periodontitis rdf:type owl:Class ;
-               rdfs:subClassOf :PenyakitPeriodontal ,
-                               [ rdf:type owl:Class ;
-                                 owl:unionOf ( :Gejala
-                                               :KondisiGigi
-                                               :PenyakitGigi
-                                             )
-                               ] ;
-               rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D010518> .
+:Periodontitis a owl:Class ;
+	rdfs:subClassOf <http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#PenyakitPeriodontal> , _:genid52 .
 
+_:genid52 a owl:Class ;
+	owl:unionOf _:genid55 .
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PlakGigi
-:PlakGigi rdf:type owl:Class ;
-          rdfs:subClassOf :KondisiGigi ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :menyebabkan ;
-                            owl:someValuesFrom :KarangGigi
-                          ] .
+_:genid55 a rdf:List ;
+	rdf:first :Gejala ;
+	rdf:rest _:genid54 .
 
+_:genid54 a rdf:List ;
+	rdf:first :KondisiGigi ;
+	rdf:rest _:genid53 .
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiGigi
-:PosisiGigi rdf:type owl:Class ;
-            rdfs:subClassOf :KondisiGigi .
+_:genid53 a rdf:List ;
+	rdf:first :PenyakitGigi ;
+	rdf:rest rdf:nil .
 
+:Periodontitis rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D010518> .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PlakGigi
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiHorizontal
-:PosisiHorizontal rdf:type owl:Class ;
-                  rdfs:subClassOf :PosisiGigi .
+:PlakGigi a owl:Class ;
+	rdfs:subClassOf :KondisiGigi , _:genid56 .
 
+_:genid56 a owl:Restriction ;
+	owl:onProperty :menyebabkan ;
+	owl:someValuesFrom :KarangGigi .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiGigi
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiMiring
-:PosisiMiring rdf:type owl:Class ;
-              rdfs:subClassOf :PosisiGigi .
+:PosisiGigi a owl:Class ;
+	rdfs:subClassOf :KondisiGigi .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiHorizontal
+
+:PosisiHorizontal a owl:Class ;
+	rdfs:subClassOf :PosisiGigi .
+# 
+# http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiMiring
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PulpitisIrreversible
@@ -914,7 +931,7 @@
 
 :g2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-:g3 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:trig a <http://www.w3.org/2003/11/swrl#Variable> .
 
 :detik rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
