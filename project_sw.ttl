@@ -156,30 +156,21 @@
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#lamaKeluhan
-:lamaKeluhan rdf:type owl:DatatypeProperty ;
-             rdfs:domain :Pasien ;
-             rdfs:range xsd:unsignedInt .
-
-
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/durasiNyeri
 :durasiNyeri rdf:type owl:DatatypeProperty ;
              rdfs:domain :Nyeri ;
              rdfs:range xsd:unsignedInt .
 
 
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/lamaKeluhan
+:lamaKeluhan rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Pasien ;
+             rdfs:range xsd:unsignedInt .
+
+
 #################################################################
 #    Classes
 #################################################################
-
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiNormal
-:KondisiNormal rdf:type owl:Class ;
-               rdfs:subClassOf :KondisiObservasi .
-
-
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#KondisiObservasi
-:KondisiObservasi rdf:type owl:Class .
-
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/AbsesPeriapikal
 :AbsesPeriapikal rdf:type owl:Class ;
@@ -401,6 +392,15 @@
 :KondisiMulut rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KondisiNormal
+:KondisiNormal rdf:type owl:Class ;
+               rdfs:subClassOf :KondisiObservasi .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/KondisiObservasi
+:KondisiObservasi rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/LubangPascaCabut
 :LubangPascaCabut rdf:type owl:Class ;
                   rdfs:subClassOf :KondisiGigi .
@@ -418,7 +418,7 @@
                              owl:onProperty :dipicuOleh ;
                              owl:someValuesFrom :Pemicu
                            ] ;
-       rdfs:subClassOf :Gejala .
+       rdfs:subClassOf :Nyeri .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Nyeri
@@ -457,7 +457,8 @@
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSaatMenggigit
-:NyeriSaatMenggigit rdf:type owl:Class .
+:NyeriSaatMenggigit rdf:type owl:Class ;
+                    rdfs:subClassOf :Nyeri .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/NyeriSpontan
@@ -657,11 +658,6 @@
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Observasi_Normal
-:Kondisi_Observasi_Normal rdf:type owl:NamedIndividual ,
-                                   :KondisiNormal .
-
-
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_GusiBerdarah
 :Gejala_GusiBerdarah rdf:type owl:NamedIndividual ,
                               :Gejala ,
@@ -728,6 +724,11 @@
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_Gigi_Erupsi_Sebagian
 :Kondisi_Gigi_Erupsi_Sebagian rdf:type owl:NamedIndividual ,
                                        :GigiErupsiSebagian .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_Observasi_Normal
+:Kondisi_Observasi_Normal rdf:type owl:NamedIndividual ,
+                                   :KondisiNormal .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_Posisi_Gigi_Miring
@@ -1485,34 +1486,47 @@
                                                                              <http://www.w3.org/2003/11/swrl#argument1> :g
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :durasiNyeri ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :dipicuOleh ;
                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :g ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :detik
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :trig
                                                                                       ] ;
                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                                                rdf:first :detik ;
-                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                           rdf:first 10 ;
-                                                                                                                                                           rdf:rest rdf:nil
-                                                                                                                                                         ]
-                                                                                                                                              ]
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :StimulusDingin ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :trig
                                                                                                  ] ;
                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :durasiNyeri ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :detik
                                                                                                             ] ;
                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :GigiBerlubangKecil ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                      rdf:first :detik ;
+                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                 rdf:first 10 ;
+                                                                                                                                                                                 rdf:rest rdf:nil
+                                                                                                                                                                               ]
+                                                                                                                                                                    ]
                                                                                                                        ] ;
-                                                                                                             rdf:rest rdf:nil
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#classPredicate> :GigiBerlubangKecil ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                 ]
+                                                                                                                      ]
                                                                                                            ]
                                                                                                 ]
                                                                                      ]
@@ -1644,34 +1658,47 @@
                                                                              <http://www.w3.org/2003/11/swrl#argument1> :g
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :durasiNyeri ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :dipicuOleh ;
                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :g ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :detik
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :trig
                                                                                       ] ;
                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                                                rdf:first :detik ;
-                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                           rdf:first 10 ;
-                                                                                                                                                           rdf:rest rdf:nil
-                                                                                                                                                         ]
-                                                                                                                                              ]
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :StimulusDingin ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :trig
                                                                                                  ] ;
                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :durasiNyeri ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :detik
                                                                                                             ] ;
                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :GigiBerlubangSedang ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                      rdf:first :detik ;
+                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                 rdf:first 10 ;
+                                                                                                                                                                                 rdf:rest rdf:nil
+                                                                                                                                                                               ]
+                                                                                                                                                                    ]
                                                                                                                        ] ;
-                                                                                                             rdf:rest rdf:nil
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :k
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#classPredicate> :GigiBerlubangSedang ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :k
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                 ]
+                                                                                                                      ]
                                                                                                            ]
                                                                                                 ]
                                                                                      ]
@@ -2149,6 +2176,85 @@
  ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Keluhan < 2 hari" ;
+   rdfs:label "ngilu_setelah_infeksi_1_hari" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :k1
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :RiwayatCabutGigi ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :k1
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiKondisi ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :k2
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :LubangPascaCabut ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :k2
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :g
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :Ngilu ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :lamaKeluhan ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :hari
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                                            rdf:first :hari ;
+                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                       rdf:first 2 ;
+                                                                                                                                                                                                       rdf:rest rdf:nil
+                                                                                                                                                                                                     ]
+                                                                                                                                                                                          ]
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                 ]
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :Kondisi_Observasi_Normal
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "Lama keluhan >= 2 hari" ;
    rdfs:label "p2_infeksi_pasca_cabut" ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
@@ -2231,59 +2337,6 @@
                                                                 ] ;
                                                       rdf:rest rdf:nil
                                                     ]
-                                         ]
- ] .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "Keluhan < 2 hari" ;
-   rdfs:label "ngilu_setelah_infeksi_1_hari" ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pasien ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mengalamiGejala ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :g
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Ngilu ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g
-                                                                           ] ;
-                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :lamaKeluhan ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :hari
-                                                                                      ] ;
-                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                                                rdf:first :hari ;
-                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                           rdf:first 2 ;
-                                                                                                                                                           rdf:rest rdf:nil
-                                                                                                                                                         ]
-                                                                                                                                              ]
-                                                                                                 ] ;
-                                                                                       rdf:rest rdf:nil
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :didugaMenderita ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :Kondisi_Observasi_Normal
-                                                     ] ;
-                                           rdf:rest rdf:nil
                                          ]
  ] .
 
