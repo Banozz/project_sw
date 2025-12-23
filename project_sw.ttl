@@ -819,7 +819,9 @@
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Gingivitis
 :Penyakit_Gingivitis rdf:type owl:NamedIndividual ,
-                              :Gingivitis .
+                              :Gingivitis ;
+                     rdfs:comment "Gingivitis adalah peradangan pada jaringan gusi (gingiva) yang terjadi tanpa merusak atau menghilangkan jaringan ikat yang menempelkan gusi ke gigi"@id ;
+                     rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D005891> .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Hipersensitivitas_Dentin
@@ -860,12 +862,16 @@
                                                          :PenyakitGigi
                                                        )
                                          ] ;
-                                :membutuhkanSpesialis :Spesialis_Konservasi_Gigi .
+                                :membutuhkanSpesialis :Spesialis_Konservasi_Gigi ;
+                                rdfs:comment "Pulpitis adalah peradangan pada “pulp” gigi (bagian tengah gigi yang berisi saraf dan pembuluh darah). Peradangan ini biasanya terjadi karena bakteri masuk ke dalam gigi melalui gigi berlubang (karies), retak, atau terbuka sehingga pulp terpapar"@id ;
+                                rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D011671> .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Pulpitis_Reversible
 :Penyakit_Pulpitis_Reversible rdf:type owl:NamedIndividual ,
-                                       :PulpitisReversible .
+                                       :PulpitisReversible ;
+                              rdfs:comment "Pulpitis adalah peradangan pada “pulp” gigi (bagian tengah gigi yang berisi saraf dan pembuluh darah). Peradangan ini biasanya terjadi karena bakteri masuk ke dalam gigi melalui gigi berlubang (karies), retak, atau terbuka sehingga pulp terpapar"@id ;
+                              rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D011671> .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Penyakit_Radiks_Relikta
@@ -882,7 +888,9 @@
                                                  :KondisiGigi
                                                  :PenyakitGigi
                                                )
-                                 ] .
+                                 ] ;
+                        rdfs:comment "Trauma oklusi adalah gangguan atau kerusakan pada jaringan penyangga gigi yang terjadi karena hubungan atau kontak gigi atas (maksila) dan gigi bawah (mandibula) tidak normal saat fungsi mengunyah berlangsung"@id ;
+                        rdfs:seeAlso <http://purl.bioontology.org/ontology/MESH/D003766> .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Spesialis_Bedah_Mulut
