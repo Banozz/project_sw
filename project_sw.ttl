@@ -548,7 +548,8 @@
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PosisiMiring
-:PosisiMiring rdf:type owl:Class .
+:PosisiMiring rdf:type owl:Class ;
+              rdfs:subClassOf :PosisiGigi .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/PulpitisIrreversible
@@ -658,30 +659,6 @@
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Nyeri_Hebat
-:Gejala_Nyeri_Hebat rdf:type owl:NamedIndividual ,
-                             :NyeriHebat .
-
-
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Lubang_Pasca_Cabut
-:Kondisi_Lubang_Pasca_Cabut rdf:type owl:NamedIndividual ,
-                                     :LubangPascaCabut .
-
-
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Riwayat_Cabut_Gigi
-:Kondisi_Riwayat_Cabut_Gigi rdf:type owl:NamedIndividual ,
-                                     :RiwayatCabutGigi .
-
-
-###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_Infeksi_Pasca_Cabut
-:Pasien_Infeksi_Pasca_Cabut rdf:type owl:NamedIndividual ,
-                                     :Pasien ;
-                            :mengalamiGejala :Gejala_Nyeri_Hebat ;
-                            :mengalamiKondisi :Kondisi_Lubang_Pasca_Cabut ,
-                                              :Kondisi_Riwayat_Cabut_Gigi ;
-                            :lamaKeluhan 2 .
-
-
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_GusiBerdarah
 :Gejala_GusiBerdarah rdf:type owl:NamedIndividual ,
                               :Gejala ,
@@ -717,6 +694,11 @@
                        :dipicuOleh :Tekanan .
 
 
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_Nyeri_Hebat
+:Gejala_Nyeri_Hebat rdf:type owl:NamedIndividual ,
+                             :NyeriHebat .
+
+
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_Respon_Gigi_Negatif
 :Gejala_Respon_Gigi_Negatif rdf:type owl:NamedIndividual ,
                                      :ResponGigiNegatif .
@@ -750,6 +732,11 @@
                                        :GigiErupsiSebagian .
 
 
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_Lubang_Pasca_Cabut
+:Kondisi_Lubang_Pasca_Cabut rdf:type owl:NamedIndividual ,
+                                     :LubangPascaCabut .
+
+
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_Observasi_Normal
 :Kondisi_Observasi_Normal rdf:type owl:NamedIndividual ,
                                    :KondisiNormal .
@@ -758,6 +745,11 @@
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_Posisi_Gigi_Miring
 :Kondisi_Posisi_Gigi_Miring rdf:type owl:NamedIndividual ,
                                      :PosisiMiring .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Kondisi_Riwayat_Cabut_Gigi
+:Kondisi_Riwayat_Cabut_Gigi rdf:type owl:NamedIndividual ,
+                                     :RiwayatCabutGigi .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_1
@@ -774,6 +766,15 @@
                       :mengalamiGejala :Gejala_Trismus ;
                       :mengalamiKondisi :Kondisi_Gigi_Erupsi_Sebagian ,
                                         :Kondisi_Posisi_Gigi_Miring .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_Infeksi_Pasca_Cabut
+:Pasien_Infeksi_Pasca_Cabut rdf:type owl:NamedIndividual ,
+                                     :Pasien ;
+                            :mengalamiGejala :Gejala_Nyeri_Hebat ;
+                            :mengalamiKondisi :Kondisi_Lubang_Pasca_Cabut ,
+                                              :Kondisi_Riwayat_Cabut_Gigi ;
+                            :lamaKeluhan 2 .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Pasien_Periapikal_Kronis
