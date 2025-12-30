@@ -27,6 +27,15 @@
 3. Update DL Expressivity SROIQ -> SROIQ(D): Penambahan Data Properties "Lingering Pain" dalam detik.
 4. **(On going)** Update README.md pada GitHub untuk mengakomodasi Classes, Object Properties, dan Individuals baru.
 
+## Progress Per 30 Desember 2025
+1. Finalize Ontology
+2. Finalize Web
+3. Finalize progress report
+
+## Testing Reasoner
+1. Pasien_2: For Pulpitis Irreversible Diagnosis -> Utilizes Kondisi, Gejala, and Data Property durasiNyeri (Applied on Gejala_Nyeri_Lebih_30 Ind. along with dipicuOleh)
+2. Pasien_Infeksi_Pasca_Cabut: For Infeksi Pasca Cabut Diagnosis -> Utilizes Kondisi, Gejala, and Data Property lamaKeluhan.
+
 ## Classes
 ```
 Thing
