@@ -659,6 +659,25 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Gejala_Nyeri_Lebih_30
+:Gejala_Nyeri_Lebih_30 rdf:type owl:NamedIndividual ,
+                                :Ngilu ;
+                       :dipicuOleh :Stimulus_Dingin ;
+                       :durasiNyeri 31 .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Kondisi_Gigi_Berlubang_Besar
+:Kondisi_Gigi_Berlubang_Besar rdf:type owl:NamedIndividual ,
+                                       :GigiBerlubangBesar .
+
+
+###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender#Pasien_2
+:Pasien_2 rdf:type owl:NamedIndividual ,
+                   :Pasien ;
+          :mengalamiGejala :Gejala_Nyeri_Lebih_30 ;
+          :mengalamiKondisi :Kondisi_Gigi_Berlubang_Besar .
+
+
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Gejala_GusiBerdarah
 :Gejala_GusiBerdarah rdf:type owl:NamedIndividual ,
                               :Gejala ,
@@ -924,7 +943,8 @@
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Stimulus_Dingin
-:Stimulus_Dingin rdf:type owl:NamedIndividual .
+:Stimulus_Dingin rdf:type owl:NamedIndividual ,
+                          :StimulusDingin .
 
 
 ###  http://www.semanticweb.org/iban/ontologies/2025/10/spesialis-gigi-recommender/Stimulus_Panas

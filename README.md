@@ -31,77 +31,149 @@
 ```
 Thing
 ├── Gejala
+│   ├── BengkakWajah
+│   ├── FistulaGusi
+│   ├── GusiBenjol
 │   ├── GusiBerdarah
 │   ├── Ngilu
-│   ├── NyeriMalamHari
-│   ├── NyeriSaatMenggigit
-│   └── NyeriSpontan
-├── KondisiGigi
-│   ├── BauMulut
-│   ├── GigiBerlubang
-│   ├── GigiGoyang
-│   ├── GusiTurun
-│   ├── KantungGusiDalam
-│   ├── KarangGigi
-│   └── PlakGigi
+│   ├── Nyeri
+│   │   ├── NyeriHebat
+│   │   ├── NyeriMalamHari
+│   │   ├── NyeriMenelan
+│   │   ├── NyeriPalpasi
+│   │   ├── NyeriPerkusi
+│   │   ├── NyeriRahangBelakang
+│   │   ├── NyeriSaatMenggigit
+│   │   └── NyeriSpontan
+│   ├── ResponGigiNegatif
+│   ├── ResponGigiPositifKuat
+│   └── Trismus
+├── KondisiMulut
+│   ├── KondisiGigi
+│   │   ├── BauMulut
+│   │   ├── DentinTerbuka
+│   │   ├── GigiBerlubang
+│   │   │   ├── GigiBerlubangBesar
+│   │   │   ├── GigiBerlubangDalam
+│   │   │   ├── GigiBerlubangKecil
+│   │   │   └── GigiBerlubangSedang
+│   │   ├── GigiBerwarna
+│   │   │   ├── GigiGelap (Equivalent: Discoloration)
+│   │   │   └── GigiKekuningan
+│   │   ├── GigiErupsi
+│   │   │   ├── GigiErupsiSebagian
+│   │   │   └── GigiErupsiSempurna
+│   │   ├── LubangPascaCabut
+│   │   ├── PlakGigi
+│   │   ├── PosisiGigi
+│   │   │   ├── PosisiHorizontal
+│   │   │   └── PosisiMiring
+│   │   ├── RiwayatCabutGigi
+│   │   ├── SisaAkar
+│   │   └── TandaKerusakanJaringan
+│   │       ├── GigiGoyang
+│   │       ├── GusiTurun
+│   │       └── KantungGusiDalam
+│   └── KondisiGusi
 ├── Pemicu
-│   ├── TekananSaatMenggigit
+│   ├── StimulusAsam
 │   ├── StimulusDingin
-│   └── StimulusPanas
+│   ├── StimulusPanas
+│   └── TekananSaatMenggigit
 ├── PenyakitGigi
-│   ├── Gingivitis
-│   ├── HipersensitivitasDentin
-│   ├── Periodontitis
-│   ├── PulpitisIrreversible
-│   ├── PulpitisReversible
+│   ├── KelainanStruktural
+│   │   ├── ImpaksiMolar
+│   │   ├── InfeksiPascaCabut
+│   │   ├── PeriapikalKronis
+│   │   └── RadiksRelikta
+│   ├── PenyakitPeriodontal
+│   │   ├── AbsesPeriodontal
+│   │   ├── Gingivitis
+│   │   └── Periodontitis
+│   ├── PenyakitPulpa
+│   │   ├── AbsesPeriapikal
+│   │   │   └── AbsesPeriapikalAkut
+│   │   ├── HipersensitivitasDentin
+│   │   ├── NekrosisPulpa
+│   │   ├── PulpitisIrreversible
+│   │   └── PulpitisReversible
 │   └── TraumaOklusi
 ├── SpesialisGigi
 │   ├── DokterGigiUmum
+│   ├── SpesialisBedahMulut
 │   ├── SpesialisEndodentis
-│   └── SpesialisPeridonsia
-├── TandaKerusakanJaringan
-│   ├── GigiGoyang (Subclass Of KondisiGigi)
-│   ├── GusiTurun (Subclass Of KondisiGigi)
-│   └── KantungGusiDalam (Subclass Of KondisiGigi)
+│   └── SpesialisPeriodonsia
 └── Pasien
 ```
 
 ## Object Properties
 ```
 topObjectProperty
-├── berkaitanDengan
-├── berkembangMenjadi
-├── dialamiOleh
-├── didugaMenderita
-├── dipicuOleh
-├── membutuhkanSpesialis
-├── memilikiGejala
-├── mengalamiGejala
-├── mengalamiKondisi
-├── menyebabkan
+├── berkaitanDengan (Symmetric)
+├── berkembangMenjadi (Asymmetric, Irreflexive)
+├── dialamiOleh (Inverse of mengalamiGejala)
+├── didugaMenderita (Pasien -> PenyakitGigi)
+├── dipicuOleh (Gejala/Kondisi -> Pemicu)
+├── dirujukKe (Pasien -> SpesialisGigi)
+├── membutuhkanSpesialis (PenyakitGigi -> SpesialisGigi)
+├── memilikiGejala (PenyakitGigi -> Gejala)
+├── menanganiPenyakit (Inverse of membutuhkanSpesialis)
+├── mengalamiGejala (Pasien -> Gejala)
+├── mengalamiKondisi (Pasien -> KondisiGigi)
+├── menyebabkan (Transitive)
 └── tingkatUrgensi
 ```
 
 ## Individuals
 ```
+Individuals
+├── Pasien
+│   ├── Pasien_1
+│   ├── Pasien_2 (Pulpitis Irreversible)
+│   ├── Pasien_Impaksi_Molar
+│   ├── Pasien_Infeksi_Pasca_Cabut
+│   ├── Pasien_Periapikal_Kronis
+│   ├── Pasien_Periodontitis
+│   └── Pasien_Trauma_Oklusi
 ├── Gejala
 │   ├── Gejala_GusiBerdarah
 │   ├── Gejala_Ngilu
 │   ├── Gejala_NyeriMalamHari
-│   └── Gejala_NyeriSaatGigit
+│   ├── Gejala_NyeriSaatGigit
+│   ├── Gejala_Nyeri_Hebat
+│   ├── Gejala_Respon_Gigi_Negatif
+│   ├── Gejala_Trismus
+│   └── Gejala_Nyeri_Lebih_30
 ├── Kondisi
 │   ├── Kondisi_BauMulut
-│   └── Kondisi_GigiGoyang
+│   ├── Kondisi_GigiGoyang
+│   ├── Kondisi_Fistula_Gusi
+│   ├── Kondisi_Gigi_Erupsi_Sebagian
+│   ├── Kondisi_Lubang_Pasca_Cabut
+│   ├── Kondisi_Posisi_Gigi_Miring
+│   ├── Kondisi_Riwayat_Cabut_Gigi
+│   └── Kondisi_Gigi_Berlubang_Besar
 ├── Penyakit
+│   ├── Penyakit_Abses_Periapikal_Akut
+│   ├── Penyakit_Abses_Periapikal_Kronis
+│   ├── Penyakit_Abses_Periodontal
+│   ├── Penyakit_Gingivitis
+│   ├── Penyakit_Hipersensitivitas_Dentin
+│   ├── Penyakit_Impaksi_Molar
+│   ├── Penyakit_Infeksi_Pasca_Cabut
+│   ├── Penyakit_Nekrosis_Pulpa
 │   ├── Penyakit_Periodontitis
 │   ├── Penyakit_Pulpitis_Irreversible
 │   ├── Penyakit_Pulpitis_Reversible
+│   ├── Penyakit_Radiks_Relikta
 │   └── Penyakit_Trauma_Oklusi
 ├── Spesialis
+│   ├── Spesialis_Bedah_Mulut
 │   ├── Spesialis_Konservasi_Gigi
+│   ├── Spesialis_Peridonsia
 │   └── Spesialis_Umum
 └── Pemicu
-    ├── Pemicu_Tekanan
-    ├── Pemicu_Makanan_Panas
-    └── Pemicu_Makanan_Dingin m,
+    ├── Stimulus_Dingin
+    ├── Stimulus_Panas
+    └── Tekanan
 ```
